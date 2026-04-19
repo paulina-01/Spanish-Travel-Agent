@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spanish Course — Module Slide Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:       #F5F0E8;
+    --terracotta:  #C4614A;
+    --terra-light: #E8927C;
+    --terra-pale:  #F5D5CC;
+    --olive:       #3D4A2E;
+    --olive-mid:   #6B7A54;
+    --gold:        #C9A84C;
+    --gold-pale:   #F0E0A8;
+    --charcoal:    #1C1C1A;
+    --muted:       #7A7068;
+    --white:       #FFFFFF;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body:    'DM Sans', sans-serif;
+    --font-mono:    'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #E8E3D8;
+    font-family: var(--font-body);
+    color: var(--charcoal);
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  /* ── Page header ── */
+  .page-header {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--charcoal);
+  }
+
+  .page-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── Module switcher ── */
+  .switcher {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .sw-btn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .08em;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(61,74,46,.25);
+    background: var(--cream);
+    color: var(--olive);
+    cursor: pointer;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+
+  .sw-btn:hover { background: rgba(61,74,46,.08); }
+  .sw-btn.active { background: var(--olive); color: var(--white); border-color: var(--olive); }
+
+  /* ── Slide shell ── */
+  .slide {
+    width: 100%;
+    max-width: 900px;
+    min-height: 560px;
+    background: var(--cream);
+    position: relative;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    overflow: hidden;
+    border: 1px solid rgba(61,74,46,.12);
+  }
+
+  /* Ghost background number */
+  .bg-number {
+    position: absolute;
+    top: -.15em;
+    right: -.05em;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(200px, 30vw, 320px);
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(61,74,46,.07);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  /* ── Left panel ── */
+  .panel-left {
+    background: var(--olive);
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .panel-left::before {
+    content: '';
+    position: absolute;
+    bottom: -70px; left: -70px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    opacity: .18;
+  }
+
+  .panel-left::after {
+    content: '';
+    position: absolute;
+    top: 36px; right: -36px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(201,168,76,.28);
+  }
+
+  .track-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(201,168,76,.14);
+    border: 1px solid rgba(201,168,76,.38);
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 4px 11px;
+    border-radius: 20px;
+    width: fit-content;
+    margin-bottom: 1.75rem;
+  }
+
+  .track-pill::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .module-number {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(64px, 9vw, 88px);
+    color: var(--white);
+    line-height: .9;
+    margin-bottom: .3rem;
+  }
+
+  .module-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.35);
+    margin-bottom: 1.75rem;
+  }
+
+  .module-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(20px, 2.8vw, 26px);
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+  }
+
+  .level-badge {
+    display: inline-block;
+    background: var(--terracotta);
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .1em;
+    padding: 3px 11px;
+    border-radius: 2px;
+    width: fit-content;
+  }
+
+  .students-tag {
+    font-size: 10px;
+    color: rgba(255,255,255,.32);
+    font-weight: 300;
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255,255,255,.09);
+  }
+
+  .students-tag span { color: rgba(255,255,255,.58); font-weight: 400; }
+
+  /* ── Right panel ── */
+  .panel-right {
+    padding: 2rem 2rem 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hook-block {
+    border-left: 3px solid var(--terracotta);
+    padding-left: 1rem;
+  }
+
+  .hook-label {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 5px;
+  }
+
+  .hook-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(13px, 1.6vw, 15px);
+    line-height: 1.45;
+    color: var(--charcoal);
+  }
+
+  .section-heading {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .concept-list { display: flex; flex-direction: column; gap: 6px; }
+
+  .concept-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 12px;
+    color: var(--charcoal);
+    line-height: 1.4;
+  }
+
+  .concept-dot {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--terra-pale);
+    border: 1.5px solid var(--terra-light);
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .concept-dot::after {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--terracotta);
+  }
+
+  .vocab-strip { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .vocab-pill {
+    background: var(--white);
+    border: 1px solid rgba(61,74,46,.15);
+    color: var(--olive);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .sentence-block {
+    background: var(--olive);
+    border-radius: 4px;
+    padding: .9rem 1.1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sentence-block::before {
+    content: '"';
+    position: absolute;
+    top: -10px; left: 6px;
+    font-family: var(--font-display);
+    font-size: 72px;
+    color: rgba(255,255,255,.05);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .sentence-es {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--white);
+    margin-bottom: 3px;
+    line-height: 1.4;
+  }
+
+  .sentence-en {
+    font-size: 10px;
+    color: rgba(255,255,255,.46);
+    font-weight: 300;
+  }
+
+  .drill-block {
+    background: var(--gold-pale);
+    border: 1px solid rgba(201,168,76,.38);
+    border-radius: 4px;
+    padding: .75rem .9rem;
+  }
+
+  .drill-label {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .drill-text { font-size: 11px; color: var(--charcoal); line-height: 1.5; }
+
+  .culture-block {
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+    padding-top: .75rem;
+    border-top: 1px solid rgba(61,74,46,.09);
+    margin-top: auto;
+  }
+
+  .culture-icon {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .culture-icon svg { width: 13px; height: 13px; fill: var(--white); }
+
+  .culture-text { font-size: 10px; color: var(--muted); line-height: 1.5; font-weight: 300; }
+  .culture-text strong { color: var(--charcoal); font-weight: 500; }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .panel-left  { animation: fadeUp .4s ease both; }
+  .panel-right { animation: fadeUp .4s ease .1s both; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-title">Module slide template</div>
+  <div class="page-label">Spanish course · Canva bulk-create preview</div>
+</div>
+
+<!-- Module switcher -->
+<div class="switcher" id="switcher"></div>
+
+<!-- Slide -->
+<div class="slide" id="slide">
+  <div class="bg-number" id="bg-num">1</div>
+
+  <div class="panel-left">
+    <div>
+      <div class="track-pill" id="track">Beginner</div>
+      <div class="module-number" id="mod-num">01</div>
+      <div class="module-label">Module</div>
+      <div class="module-title" id="mod-title">Who Are You?</div>
+      <div class="level-badge" id="level">A1</div>
+    </div>
+    <div class="students-tag">For: <span id="students">All students</span></div>
+  </div>
+
+  <div class="panel-right">
+    <div class="hook-block">
+      <div class="hook-label">The hook</div>
+      <div class="hook-text" id="hook"></div>
+    </div>
+    <div>
+      <div class="section-heading">Core concepts</div>
+      <div class="concept-list" id="concepts"></div>
+    </div>
+    <div>
+      <div class="section-heading">Key vocabulary</div>
+      <div class="vocab-strip" id="vocab"></div>
+    </div>
+    <div class="sentence-block">
+      <div class="sentence-es" id="sent-es"></div>
+      <div class="sentence-en" id="sent-en"></div>
+    </div>
+    <div class="drill-block">
+      <div class="drill-label">Practice drill</div>
+      <div class="drill-text" id="drill"></div>
+    </div>
+    <div class="culture-block">
+      <div class="culture-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </div>
+      <div class="culture-text"><strong>Culture note — </strong><span id="culture"></span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const modules = [
+  {
+    n: 1, title: "Who Are You?", track: "Beginner", level: "A1",
+    hook: "Spanish has two verbs for 'to be' — and choosing wrong makes you sound completely different.",
+    c1: "Ser = permanent identity (who you are)",
+    c2: "Estar = temporary state (how you feel)",
+    c3: "Full pronoun conjugation for both verbs",
+    v: ["soy / eres / es", "estoy / estás / está", "somos / estamos", "elegante · inteligente", "cansado · feliz"],
+    es: "Nosotros somos carismáticos pero no somos elegantes.",
+    en: "We are charismatic but we are not elegant.",
+    drill: "Ser or Estar? Complete: Yo ___ de Canadá. / Ella ___ cansada hoy.",
+    culture: "Estoy cansado means you had a long day — not that you're a tired person. Your mood is always temporary in Spanish.",
+    students: "All students"
+  },
+  {
+    n: 2, title: "Going Places", track: "Beginner", level: "A1–A2",
+    hook: "One verb — IR — lets you talk about the present AND the future from day one.",
+    c1: "IR conjugation (voy / vas / va / vamos / van)",
+    c2: "IR + a + infinitive = near future (voy a comer)",
+    c3: "a + el = al · question: ¿A dónde vas?",
+    v: ["voy a + infinitivo", "vas a + infinitivo", "al restaurante", "¿A dónde vas?", "¿Qué vas a hacer?"],
+    es: "Voy a ir a la biblioteca mañana.",
+    en: "I am going to go to the library tomorrow.",
+    drill: "Translate: I am going to eat. / Are you going to go to the restaurant?",
+    culture: "IR is wildly irregular — but also the most-used verb. Master it first and half your conversations are covered.",
+    students: "All students"
+  },
+  {
+    n: 4, title: "A Day in the Life", track: "Beginner", level: "A2",
+    hook: "Follow Tía Filomena through one full day — and pick up 40 essential verbs along the way.",
+    c1: "Morning: reflexive routine verbs (levantarse · bañarse · arreglarse)",
+    c2: "Afternoon: market · school · food · activities",
+    c3: "Evening: cooking · resting · sequence words",
+    v: ["se levanta · se baña", "primero · después", "desayuno · almuerzo · cena", "el mercado · el trabajo", "a las 6 / al mediodía"],
+    es: "En la mañana mi tía se levanta a las 6 porque tiene muchas cosas que hacer.",
+    en: "In the morning my aunt gets up at 6 because she has a lot to do.",
+    drill: "Write your own 'Day in My Life' paragraph using: primero / después / finalmente.",
+    culture: "Reflexive verbs (levantarse · bañarse) put the action back on the subject — the se is always your signal.",
+    students: "All students"
+  },
+  {
+    n: 8, title: "Para vs Por", track: "Intermediate", level: "B1–B2",
+    hook: "Flores para ti vs. estudio español por mis padres — one is purpose, the other is cause.",
+    c1: "PARA: purpose · destination · deadline · opinion · recipient",
+    c2: "POR: cause · duration · medium · exchange · space",
+    c3: "Side-by-side contrast with real examples",
+    v: ["Para = purpose / goal", "Por = cause / time", "Flores para ti", "Por la mañana", "Por videollamada"],
+    es: "Estudio español para hablar con amigos en Colombia.",
+    en: "I study Spanish to speak with friends in Colombia.",
+    drill: "Fill in para or por: Estudio español ___ mis padres. / Este paquete es ___ Diego.",
+    culture: "Think of PARA as an arrow pointing forward to a goal. POR is the ground you walked on to get there.",
+    students: "Christopher · Laura"
+  },
+  {
+    n: 12, title: "The Subjunctive", track: "Advanced", level: "B2",
+    hook: "The subjunctive isn't one tense — it's a lens you put over reality.",
+    c1: "Subjuntivo presente: que corra · que hable · que tenga",
+    c2: "Subjuntivo imperfecto: si corriera · si tuviera",
+    c3: "Pluscuamperfecto: hubiera corrido · estuve vs. estaba",
+    v: ["Que corra (present subj.)", "Si corriera (imperfect subj.)", "Hubiera corrido", "Si + imperfecto + condicional", "Estuve vs. estaba"],
+    es: "Si yo corriera en un maratón, tendría mejores zapatos de correr.",
+    en: "If I ran in a marathon, I would have better running shoes.",
+    drill: "Write 3 si-clauses: one dream / one regret / one open possibility.",
+    culture: "Estuve corriendo = completed. Estaba corriendo = interrupted by something. Tiny difference, essential in Spanish.",
+    students: "Laura DELE"
+  },
+  {
+    n: 16, title: "Poetry, Song & Culture", track: "Advanced", level: "C1",
+    hook: "The highest level of fluency is feeling the culture — not just translating it.",
+    c1: "Criptografía by Nadia Escalante Andrade — literary analysis",
+    c2: "El Niágara en Bicicleta — slang · humour · satire",
+    c3: "Casa de las Flores · A quién le importa — cultural context",
+    v: ["La parábola (the parable)", "Derrumbarse (to collapse)", "Espejismo (mirage)", "Sirimba (fainting — slang)", "Calentura (fever / slang)"],
+    es: "La casa terminó por derrumbarse. Pero ahora bailo mientras cruzo mi reino de arena.",
+    en: "The house ended up collapsing. But now I dance as I cross my kingdom of sand.",
+    drill: "Write a 10-line poem using at least two subjunctive expressions from Module 14.",
+    culture: "El Niágara en Bicicleta uses Caribbean slang and hyperbole to satirize a broken healthcare system. The humour is the critique — a true C1 skill.",
+    students: "Laura DELE"
+  }
+];
+
+const switcher = document.getElementById('switcher');
+
+function render(i) {
+  const m = modules[i];
+  document.getElementById('bg-num').textContent    = m.n;
+  document.getElementById('track').textContent     = m.track;
+  document.getElementById('mod-num').textContent   = String(m.n).padStart(2, '0');
+  document.getElementById('mod-title').textContent = m.title;
+  document.getElementById('level').textContent     = m.level;
+  document.getElementById('hook').textContent      = '\u201c' + m.hook + '\u201d';
+  document.getElementById('students').textContent  = m.students;
+  document.getElementById('sent-es').textContent   = m.es;
+  document.getElementById('sent-en').textContent   = m.en;
+  document.getElementById('drill').textContent     = m.drill;
+  document.getElementById('culture').textContent   = m.culture;
+
+  document.getElementById('concepts').innerHTML = [m.c1, m.c2, m.c3]
+    .map(c => `<div class="concept-item"><div class="concept-dot"></div><span>${c}</span></div>`)
+    .join('');
+
+  document.getElementById('vocab').innerHTML = m.v
+    .map(v => `<span class="vocab-pill">${v}</span>`)
+    .join('');
+
+  document.querySelectorAll('.sw-btn')
+    .forEach((b, j) => b.classList.toggle('active', j === i));
+
+  /* re-trigger fade animation */
+  ['panel-left', 'panel-right'].forEach(cls => {
+    const el = document.querySelector('.' + cls);
+    el.style.animation = 'none';
+    el.offsetHeight; /* reflow */
+    el.style.animation = '';
+  });
+}
+
+modules.forEach((m, i) => {
+  const b = document.createElement('button');
+  b.className = 'sw-btn' + (i === 0 ? ' active' : '');
+  b.textContent = 'M' + m.n + ' — ' + m.title;
+  b.onclick = () => render(i);
+  switcher.appendChild(b);
+});
+
+render(0);
+</script>
+
+</body>
+</html>
