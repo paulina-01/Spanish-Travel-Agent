@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spanish Course — Syllabus Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:      #F5F0E8;
+    --terracotta: #C4614A;
+    --olive:      #3D4A2E;
+    --gold:       #C9A84C;
+    --charcoal:   #1C1C1A;
+    --muted:      #7A7068;
+    --white:      #FFFFFF;
+    --font-d: 'Playfair Display', Georgia, serif;
+    --font-b: 'DM Sans', sans-serif;
+    --font-m: 'DM Mono', monospace;
+
+    /* track colours */
+    --teal-50:  #E1F5EE; --teal-600: #0F6E56; --teal-800: #085041;
+    --pur-50:   #EEEDFE; --pur-600:  #534AB7; --pur-800:  #3C3489;
+    --cor-50:   #FAECE7; --cor-600:  #993C1D; --cor-800:  #712B13;
+    --gray-100: #D3D1C7; --gray-600: #5F5E5A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    font-family: var(--font-b);
+    color: var(--charcoal);
+    min-height: 100vh;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  /* ── Page header ── */
+  .page-header {
+    width: 100%;
+    max-width: 860px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+  .page-title {
+    font-family: var(--font-d);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--charcoal);
+  }
+  .page-label {
+    font-family: var(--font-m);
+    font-size: 9px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── Track pills row ── */
+  .tracks-row {
+    width: 100%;
+    max-width: 860px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: center;
+    gap: 0;
+  }
+  .track-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-family: var(--font-m);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .track-pill .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .tp-teal  { background: var(--teal-50);  color: var(--teal-800);  border: 1px solid var(--teal-600); }
+  .tp-teal  .dot { background: var(--teal-600); }
+  .tp-pur   { background: var(--pur-50);   color: var(--pur-800);   border: 1px solid var(--pur-600); }
+  .tp-pur   .dot { background: var(--pur-600); }
+  .tp-cor   { background: var(--cor-50);   color: var(--cor-800);   border: 1px solid var(--cor-600); }
+  .tp-cor   .dot { background: var(--cor-600); }
+  .arrow-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-600);
+    font-size: 16px;
+    padding: 0 6px;
+  }
+
+  /* ── Columns grid ── */
+  .columns {
+    width: 100%;
+    max-width: 860px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  /* ── Module card ── */
+  .module-card {
+    border-radius: 10px;
+    border: 1px solid transparent;
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s;
+    position: relative;
+  }
+  .module-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+  .mc-teal { background: var(--teal-50); border-color: rgba(15,110,86,.2); }
+  .mc-pur  { background: var(--pur-50);  border-color: rgba(83,74,183,.2); }
+  .mc-cor  { background: var(--cor-50);  border-color: rgba(153,60,29,.2); }
+
+  .mc-num {
+    font-family: var(--font-d);
+    font-weight: 700;
+    font-size: 11px;
+    margin-bottom: 4px;
+    opacity: .5;
+  }
+  .mc-teal .mc-num { color: var(--teal-800); }
+  .mc-pur  .mc-num { color: var(--pur-800); }
+  .mc-cor  .mc-num { color: var(--cor-800); }
+
+  .mc-title {
+    font-family: var(--font-d);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.25;
+    margin-bottom: 5px;
+  }
+  .mc-teal .mc-title { color: var(--teal-800); }
+  .mc-pur  .mc-title { color: var(--pur-800); }
+  .mc-cor  .mc-title { color: var(--cor-800); }
+
+  .mc-sub {
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 1.45;
+    opacity: .75;
+  }
+  .mc-teal .mc-sub { color: var(--teal-800); }
+  .mc-pur  .mc-sub { color: var(--pur-800); }
+  .mc-cor  .mc-sub { color: var(--cor-800); }
+
+  /* connector dots between cards in a column */
+  .col-connector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 18px;
+    position: relative;
+  }
+  .col-connector::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 1px;
+    height: 18px;
+  }
+  .col-connector.tc::before { background: var(--teal-600); opacity: .35; }
+  .col-connector.pc::before { background: var(--pur-600);  opacity: .35; }
+  .col-connector.cc::before { background: var(--cor-600);  opacity: .35; }
+  .col-connector-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+  }
+  .tc .col-connector-dot { background: var(--teal-600); opacity: .5; }
+  .pc .col-connector-dot { background: var(--pur-600);  opacity: .5; }
+  .cc .col-connector-dot { background: var(--cor-600);  opacity: .5; }
+
+  /* ── Source files strip ── */
+  .sources-strip {
+    width: 100%;
+    max-width: 860px;
+    background: var(--white);
+    border: 1px solid rgba(61,74,46,.1);
+    border-radius: 8px;
+    padding: .9rem 1.25rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .src-label {
+    font-family: var(--font-m);
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  .src-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--charcoal);
+    font-weight: 300;
+  }
+  .src-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── Detail panel (shown on card click) ── */
+  .detail-panel {
+    width: 100%;
+    max-width: 860px;
+    background: var(--white);
+    border: 1px solid rgba(61,74,46,.12);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    display: none;
+  }
+  .detail-panel.show { display: block; }
+  .dp-track {
+    font-family: var(--font-m);
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .dp-title {
+    font-family: var(--font-d);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: .5rem;
+  }
+  .dp-hook {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    font-weight: 300;
+    border-left: 3px solid var(--terracotta);
+    padding-left: .75rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  .dp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: .75rem;
+  }
+  .dp-cell {
+    background: var(--cream);
+    border-radius: 6px;
+    padding: .65rem .8rem;
+  }
+  .dp-cell-label {
+    font-family: var(--font-m);
+    font-size: 8px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .dp-cell-val { font-size: 12px; color: var(--charcoal); line-height: 1.4; font-weight: 300; }
+  .dp-close {
+    font-family: var(--font-m);
+    font-size: 9px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: none;
+    border: 1px solid rgba(61,74,46,.2);
+    border-radius: 4px;
+    padding: 4px 10px;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  .dp-close:hover { background: var(--cream); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .columns { animation: fadeUp .4s ease both; }
+  .detail-panel.show { animation: fadeUp .25s ease both; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-title">Course syllabus map</div>
+  <div class="page-label">Spanish curriculum · 16 modules · 3 tracks</div>
+</div>
+
+<!-- Track header row -->
+<div class="tracks-row">
+  <div class="track-pill tp-teal"><span class="dot"></span>Beginner track</div>
+  <div class="arrow-connector">→</div>
+  <div class="track-pill tp-pur"><span class="dot"></span>Intermediate track</div>
+  <div class="arrow-connector">→</div>
+  <div class="track-pill tp-cor"><span class="dot"></span>Advanced · DELE B2/C1</div>
+</div>
+
+<!-- Module columns -->
+<div class="columns" id="columns"></div>
+
+<!-- Detail panel -->
+<div class="detail-panel" id="detail">
+  <div class="dp-track" id="dp-track"></div>
+  <div class="dp-title" id="dp-title"></div>
+  <div class="dp-hook" id="dp-hook"></div>
+  <div class="dp-grid">
+    <div class="dp-cell"><div class="dp-cell-label">Level</div><div class="dp-cell-val" id="dp-level"></div></div>
+    <div class="dp-cell"><div class="dp-cell-label">Core focus</div><div class="dp-cell-val" id="dp-focus"></div></div>
+    <div class="dp-cell"><div class="dp-cell-label">Students</div><div class="dp-cell-val" id="dp-students"></div></div>
+  </div>
+  <button class="dp-close" onclick="closeDetail()">Close ✕</button>
+</div>
+
+<!-- Source files -->
+<div class="sources-strip">
+  <span class="src-label">Source files</span>
+  <span class="src-item"><span class="src-dot" style="background:var(--teal-600)"></span>Beginner.xlsx</span>
+  <span class="src-item"><span class="src-dot" style="background:var(--pur-600)"></span>Christopher.xlsx</span>
+  <span class="src-item"><span class="src-dot" style="background:var(--pur-600)"></span>Mickey.xlsx</span>
+  <span class="src-item"><span class="src-dot" style="background:var(--cor-600)"></span>Laura.xlsx</span>
+  <span class="src-item"><span class="src-dot" style="background:var(--cor-600)"></span>Laura DELE B2/C1.xlsx</span>
+  <span class="src-item"><span class="src-dot" style="background:var(--gray-600)"></span>Verb_Conjugation.xlsx (cross-file ref)</span>
+</div>
+
+<script>
+const data = {
+  beginner: [
+    { n:1,  title:"Who Are You?",               sub:"Ser, Estar & identity",          level:"A1",     hook:"Spanish has two verbs for 'to be' — and choosing wrong makes you sound completely different.", focus:"Ser vs Estar full conjugation + adjectives", students:"All students" },
+    { n:2,  title:"Going Places",               sub:"IR + near future",               level:"A1–A2",  hook:"One verb — IR — lets you talk about the present AND the future from day one.", focus:"IR conjugation + voy a + infinitive", students:"All students" },
+    { n:3,  title:"What, Where, Why?",          sub:"Question words + tense map",     level:"A1–A2",  hook:"Six question words unlock any conversation — learn these and you can ask anything.", focus:"Qué · Dónde · Cuándo · Por qué + tense overview", students:"All students" },
+    { n:4,  title:"A Day in the Life",          sub:"Daily routines & schedule",      level:"A2",     hook:"Follow Tía Filomena through one full day — and pick up 40 essential verbs along the way.", focus:"Reflexive verbs + time expressions + meal vocab", students:"All students" },
+    { n:5,  title:"Your First Real Conversations", sub:"Scripted real scenarios",     level:"A2",     hook:"Scripts give you training wheels — real fluency comes from learning to break them.", focus:"Karate enrolment · café bargaining · days + numbers", students:"Beginner · Mickey" },
+  ],
+  intermediate: [
+    { n:6,  title:"Verb Conjugation Mastery",   sub:"All 10 tense modes",            level:"B1",     hook:"Every Spanish verb is a machine with 10 modes — here is the full dashboard.", focus:"AR/ER/IR patterns across imperativo to subjuntivo pluscuam.", students:"Christopher · Mickey · Laura" },
+    { n:7,  title:"Articles, Gender & Nouns",   sub:"Exceptions & special cases",    level:"B1",     hook:"El problema · la mano · el agua — Spanish gender isn't always logical. Here is the map.", focus:"-ma masculines · tonic 'a' feminines · LO article · irregular plurals", students:"Laura · Christopher" },
+    { n:8,  title:"Para vs Por",                sub:"Purpose vs cause",              level:"B1–B2",  hook:"Flores para ti vs. estudio español por mis padres — one is purpose, the other is cause.", focus:"PARA (purpose/destination) vs POR (cause/duration/medium)", students:"Christopher · Laura" },
+    { n:9,  title:"Workplace & Social Spanish", sub:"Office + street register",      level:"B1–B2",  hook:"Office Spanish sounds different from street Spanish — master both and you belong in every room.", focus:"Meeting vocab · Argentine slang (quilombo, laburo) · small talk", students:"Christopher · Mickey" },
+    { n:10, title:"Reflexives, Travel & Airport", sub:"Pluscuamperfecto + scenarios", level:"B1–B2", hook:"Reflexive verbs say the action bounces back to you — and the past-of-the-past tells stories within stories.", focus:"Me fui · había + participio · airport full scenario", students:"Mickey · Laura" },
+    { n:11, title:"Coloquialismos & Jerga",     sub:"Slang by region",               level:"B2",     hook:"This is what nobody teaches in textbooks — and what makes you sound real.", focus:"Castilian (guay, molar) · Latin American (pos sí, maje) · refranes", students:"Laura · Mickey" },
+  ],
+  advanced: [
+    { n:12, title:"The Subjunctive",            sub:"All four modes",                level:"B2",     hook:"The subjunctive isn't one tense — it's a lens you put over reality.", focus:"Presente · imperfecto · pluscuamperfecto · si-clauses", students:"Laura DELE" },
+    { n:13, title:"Critical Reading & Debate",  sub:"DELE reading strategies",       level:"B2",     hook:"DELE reading tasks aren't about finding facts — they're about reading the author's intent.", focus:"MCQ strategies · debate connectors · argument templates", students:"Laura DELE" },
+    { n:14, title:"DELE Oral Expression",       sub:"8 exam-grade formulas",         level:"B2–C1",  hook:"Eight expressions that will instantly upgrade your exam score.", focus:"Uncertainty (subjuntivo) vs certainty (indicativo) expression pairs", students:"Laura DELE" },
+    { n:15, title:"DELE Listening Mastery",     sub:"18-question task breakdown",    level:"B2",     hook:"You understand more than you think — here is how to trust your ear.", focus:"Tarea 1–2 strategy · trap words · scored practice run-through", students:"Laura DELE" },
+    { n:16, title:"Poetry, Song & Culture",     sub:"C1 cultural fluency",           level:"C1",     hook:"The highest level of fluency is feeling the culture — not just translating it.", focus:"Criptografía · El Niágara en Bicicleta · Casa de las Flores", students:"Laura DELE" },
+  ]
+};
+
+const colorMap = {
+  beginner:     { card: 'mc-teal', conn: 'tc', trackColor: 'var(--teal-600)' },
+  intermediate: { card: 'mc-pur',  conn: 'pc', trackColor: 'var(--pur-600)'  },
+  advanced:     { card: 'mc-cor',  conn: 'cc', trackColor: 'var(--cor-600)'  },
+};
+
+function buildColumn(track, modules) {
+  const col = document.createElement('div');
+  col.style.display = 'flex';
+  col.style.flexDirection = 'column';
+
+  modules.forEach((m, i) => {
+    const c = colorMap[track];
+
+    const card = document.createElement('div');
+    card.className = `module-card ${c.card}`;
+    card.innerHTML = `
+      <div class="mc-num">Module ${m.n}</div>
+      <div class="mc-title">${m.title}</div>
+      <div class="mc-sub">${m.sub}</div>
+    `;
+    card.onclick = () => openDetail(m, track, c.trackColor);
+    col.appendChild(card);
+
+    if (i < modules.length - 1) {
+      const conn = document.createElement('div');
+      conn.className = `col-connector ${c.conn}`;
+      conn.innerHTML = `<div class="col-connector-dot"></div>`;
+      col.appendChild(conn);
+    }
+  });
+
+  return col;
+}
+
+const columns = document.getElementById('columns');
+columns.appendChild(buildColumn('beginner',     data.beginner));
+columns.appendChild(buildColumn('intermediate', data.intermediate));
+columns.appendChild(buildColumn('advanced',     data.advanced));
+
+function openDetail(m, track, color) {
+  const panel = document.getElementById('detail');
+  document.getElementById('dp-track').textContent    = track.charAt(0).toUpperCase() + track.slice(1) + ' track · Module ' + m.n;
+  document.getElementById('dp-track').style.color    = color;
+  document.getElementById('dp-title').textContent    = m.title;
+  document.getElementById('dp-hook').textContent     = '\u201c' + m.hook + '\u201d';
+  document.getElementById('dp-level').textContent    = m.level;
+  document.getElementById('dp-focus').textContent    = m.focus;
+  document.getElementById('dp-students').textContent = m.students;
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function closeDetail() {
+  document.getElementById('detail').classList.remove('show');
+}
+</script>
+
+</body>
+</html>
