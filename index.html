@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond the Plaza — Spanish for the Modern Traveller</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:       #F5F0E8;
+    --terracotta:  #C4614A;
+    --terra-light: #E8927C;
+    --terra-pale:  #F5D5CC;
+    --olive:       #3D4A2E;
+    --olive-mid:   #6B7A54;
+    --gold:        #C9A84C;
+    --gold-pale:   #F0E0A8;
+    --charcoal:    #1C1C1A;
+    --muted:       #7A7068;
+    --bg:          #E8E3D8;
+    --white:       #FFFFFF;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body:    'DM Sans', sans-serif;
+    --font-mono:    'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: var(--font-body);
+    color: var(--charcoal);
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(232,227,216,.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(61,74,46,.1);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: var(--font-display);
+    font-style: italic; font-weight: 700;
+    font-size: 18px; color: var(--charcoal);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+
+  .nav-link {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    transition: color .15s;
+  }
+  .nav-link:hover { color: var(--charcoal); }
+
+  .nav-cta {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: .1em; text-transform: uppercase;
+    background: var(--olive); color: var(--white);
+    border: none; padding: 7px 16px;
+    border-radius: 2px; cursor: pointer;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .nav-cta:hover { opacity: .85; }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: calc(100vh - 56px);
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 28px; height: 1px; background: var(--terracotta);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 900; font-size: clamp(42px, 6vw, 72px);
+    line-height: 1.05; color: var(--charcoal);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: italic; color: var(--terracotta); }
+
+  .hero-desc {
+    font-size: clamp(14px, 1.5vw, 16px);
+    color: var(--muted); line-height: 1.7;
+    font-weight: 300; max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: .1em; text-transform: uppercase;
+    background: var(--terracotta); color: var(--white);
+    border: none; padding: 13px 28px;
+    border-radius: 2px; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: opacity .15s;
+  }
+  .btn-primary:hover { opacity: .88; }
+
+  .btn-ghost {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: .1em; text-transform: uppercase;
+    background: none; color: var(--olive);
+    border: 1px solid rgba(61,74,46,.3); padding: 12px 24px;
+    border-radius: 2px; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: background .15s, color .15s;
+  }
+  .btn-ghost:hover { background: var(--olive); color: var(--white); border-color: var(--olive); }
+
+  .hero-meta {
+    display: flex; gap: 2rem; margin-top: 3rem;
+    padding-top: 2rem; border-top: 1px solid rgba(61,74,46,.1);
+    flex-wrap: wrap;
+  }
+  .hero-stat-n {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 28px; color: var(--charcoal); line-height: 1;
+    margin-bottom: 3px;
+  }
+  .hero-stat-l {
+    font-family: var(--font-mono); font-size: 8px;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* Hero card */
+  .hero-card {
+    background: var(--olive); border-radius: 4px;
+    padding: 2.5rem 2rem; position: relative; overflow: hidden;
+    align-self: center;
+  }
+  .hero-card::before {
+    content: ''; position: absolute;
+    bottom: -60px; right: -60px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: var(--terracotta); opacity: .15;
+  }
+  .hero-card::after {
+    content: ''; position: absolute;
+    top: 24px; left: -30px;
+    width: 90px; height: 90px; border-radius: 50%;
+    border: 1px solid rgba(201,168,76,.22);
+  }
+  .hc-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(201,168,76,.14);
+    border: 1px solid rgba(201,168,76,.35);
+    color: var(--gold); font-family: var(--font-mono);
+    font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+    padding: 4px 11px; border-radius: 20px; margin-bottom: 1.5rem;
+  }
+  .hc-pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+  .hc-num {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: 80px; color: var(--white); line-height: .9;
+    margin-bottom: .2rem;
+  }
+  .hc-label {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: rgba(255,255,255,.35); margin-bottom: 1.25rem;
+  }
+  .hc-title {
+    font-family: var(--font-display); font-style: italic;
+    font-weight: 700; font-size: 22px;
+    color: var(--white); line-height: 1.2; margin-bottom: 1rem;
+  }
+  .hc-excerpt {
+    font-size: 12px; color: rgba(255,255,255,.5);
+    line-height: 1.6; font-weight: 300;
+  }
+
+  /* ── Features ── */
+  .section {
+    max-width: 1100px; margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+
+  .section-label {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: .75rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--terracotta); }
+
+  .section-title {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(28px, 4vw, 42px); line-height: 1.15;
+    color: var(--charcoal); margin-bottom: 1rem; max-width: 560px;
+  }
+  .section-title em { font-style: italic; color: var(--terracotta); }
+
+  .section-desc {
+    font-size: 14px; color: var(--muted);
+    line-height: 1.7; font-weight: 300; max-width: 520px;
+    margin-bottom: 3rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .feature-card {
+    background: var(--cream);
+    border: 1px solid rgba(61,74,46,.1);
+    border-radius: 4px; padding: 1.75rem 1.5rem;
+  }
+
+  .feature-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--terra-pale);
+    border: 1.5px solid var(--terra-light);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.1rem;
+  }
+  .feature-icon svg { width: 16px; height: 16px; fill: var(--terracotta); }
+
+  .feature-title {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 17px; color: var(--charcoal);
+    margin-bottom: .5rem; line-height: 1.2;
+  }
+  .feature-desc {
+    font-size: 12px; color: var(--muted);
+    line-height: 1.65; font-weight: 300;
+  }
+
+  /* ── Module strip ── */
+  .modules-section {
+    background: var(--olive);
+    padding: 5rem 0;
+    position: relative; overflow: hidden;
+  }
+  .modules-section::before {
+    content: ''; position: absolute;
+    bottom: -80px; right: -80px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: var(--terracotta); opacity: .12;
+  }
+
+  .modules-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+  }
+
+  .modules-header { margin-bottom: 2.5rem; }
+
+  .modules-label {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: rgba(255,255,255,.35); margin-bottom: .75rem;
+  }
+
+  .modules-title {
+    font-family: var(--font-display); font-style: italic;
+    font-weight: 700; font-size: clamp(24px, 3.5vw, 36px);
+    color: var(--white); line-height: 1.2;
+  }
+
+  .module-list { display: flex; flex-direction: column; gap: 1px; }
+
+  .module-row {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    align-items: center; gap: 1.5rem;
+    padding: 1.1rem 1.25rem;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 3px;
+    transition: background .15s;
+  }
+  .module-row:hover { background: rgba(255,255,255,.08); }
+
+  .mr-num {
+    font-family: var(--font-display); font-weight: 900;
+    font-size: 28px; color: rgba(255,255,255,.2); line-height: 1;
+    text-align: right;
+  }
+
+  .mr-title {
+    font-family: var(--font-display); font-style: italic;
+    font-weight: 700; font-size: 16px; color: var(--white);
+    line-height: 1.2;
+  }
+  .mr-hook { font-size: 11px; color: rgba(255,255,255,.4); font-weight: 300; margin-top: 3px; }
+
+  .mr-badge {
+    font-family: var(--font-mono); font-size: 8px;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px; white-space: nowrap;
+    color: var(--gold);
+    background: rgba(201,168,76,.12);
+    border: 1px solid rgba(201,168,76,.25);
+  }
+
+  /* ── Signup ── */
+  .signup-section {
+    max-width: 680px; margin: 0 auto;
+    padding: 7rem 2rem;
+    text-align: center;
+  }
+
+  .signup-eyebrow {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 1rem;
+  }
+
+  .signup-title {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(28px, 4vw, 40px); line-height: 1.15;
+    color: var(--charcoal); margin-bottom: 1rem;
+  }
+  .signup-title em { font-style: italic; color: var(--terracotta); }
+
+  .signup-desc {
+    font-size: 14px; color: var(--muted);
+    line-height: 1.7; font-weight: 300; margin-bottom: 2.5rem;
+  }
+
+  .signup-form {
+    display: flex; gap: 8px; max-width: 440px; margin: 0 auto 1rem;
+  }
+
+  .signup-input {
+    flex: 1; font-family: var(--font-body); font-size: 13px;
+    padding: 11px 14px;
+    border: 1px solid rgba(61,74,46,.25);
+    border-radius: 2px; background: var(--white);
+    color: var(--charcoal); outline: none;
+    transition: border-color .15s;
+  }
+  .signup-input:focus { border-color: var(--olive); }
+  .signup-input::placeholder { color: rgba(122,112,104,.55); }
+
+  .signup-btn {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: .1em; text-transform: uppercase;
+    background: var(--terracotta); color: var(--white);
+    border: none; padding: 11px 22px;
+    border-radius: 2px; cursor: pointer;
+    transition: opacity .15s; white-space: nowrap;
+  }
+  .signup-btn:hover { opacity: .88; }
+
+  .signup-note {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: .08em; color: var(--muted);
+  }
+
+  .signup-thanks {
+    display: none;
+    font-family: var(--font-display); font-style: italic;
+    font-size: 18px; color: var(--olive-mid);
+    padding: 1rem 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid rgba(61,74,46,.1);
+    padding: 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  .footer-brand {
+    font-family: var(--font-display); font-style: italic;
+    font-weight: 700; font-size: 16px; color: var(--charcoal);
+  }
+
+  .footer-note {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 820px) {
+    .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; min-height: auto; gap: 3rem; }
+    .hero-card { display: none; }
+    .features-grid { grid-template-columns: 1fr; }
+    .module-row { grid-template-columns: 40px 1fr; }
+    .mr-badge { display: none; }
+    .signup-form { flex-direction: column; }
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: .75rem; }
+  }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-content { animation: fadeUp .5s ease both; }
+  .hero-card    { animation: fadeUp .5s ease .15s both; }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a class="nav-brand" href="#">Beyond the Plaza</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#course">The Course</a>
+    <a class="nav-link" href="#modules">Modules</a>
+    <a class="nav-cta" href="Splash-draftv3-parrot.html">Preview →</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Spanish for the modern traveller</div>
+    <h1 class="hero-title">
+      Learn Spanish the way<br>
+      <em>real travel</em> demands it.
+    </h1>
+    <p class="hero-desc">
+      Beyond the Plaza is a curated Spanish course built for people who want to
+      connect, navigate, and belong — not just survive the tourist trail.
+      Conversation-first, culture-forward, structured for busy lives.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#signup">Join the waitlist</a>
+      <a class="btn-ghost" href="Splash-draftv3-parrot.html">See course preview</a>
+    </div>
+    <div class="hero-meta">
+      <div>
+        <div class="hero-stat-n">16</div>
+        <div class="hero-stat-l">Modules</div>
+      </div>
+      <div>
+        <div class="hero-stat-n">A1→C1</div>
+        <div class="hero-stat-l">All levels</div>
+      </div>
+      <div>
+        <div class="hero-stat-n">100%</div>
+        <div class="hero-stat-l">Conversation-led</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="hc-pill">Module Preview</div>
+    <div class="hc-num">01</div>
+    <div class="hc-label">Module</div>
+    <div class="hc-title">Who Are You?</div>
+    <div class="hc-excerpt">
+      Spanish has two verbs for "to be" — and choosing wrong
+      makes you sound completely different. Learn <em>ser</em> vs <em>estar</em>
+      and the full pronoun conjugation in one focused session.
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<div class="section" id="course">
+  <div class="section-label">Why Beyond the Plaza</div>
+  <h2 class="section-title">Built for the way <em>travellers</em> actually learn</h2>
+  <p class="section-desc">
+    Most Spanish courses teach you to fill in blanks. We teach you to hold a conversation
+    at a street market, argue affectionately with a taxi driver, and read the room.
+  </p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+      </div>
+      <div class="feature-title">Conversation-first</div>
+      <div class="feature-desc">
+        Every module opens with a real-world hook — a situation you will actually be in.
+        Grammar follows meaning, never the other way around.
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </div>
+      <div class="feature-title">Culture built in</div>
+      <div class="feature-desc">
+        Language without culture is a dictionary with no soul. Every module includes
+        notes that tell you what your words actually mean to the people hearing them.
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      </div>
+      <div class="feature-title">Structured for busy lives</div>
+      <div class="feature-desc">
+        Each module is self-contained and designed to fit in under 30 minutes.
+        A1 through C1 — pick up exactly where your level sits.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Module strip -->
+<div class="modules-section" id="modules">
+  <div class="modules-inner">
+    <div class="modules-header">
+      <div class="modules-label">The curriculum</div>
+      <div class="modules-title">16 modules, A1 to C1</div>
+    </div>
+    <div class="module-list">
+      <div class="module-row">
+        <div class="mr-num">00</div>
+        <div>
+          <div class="mr-title">Pronunciation</div>
+          <div class="mr-hook">Every letter always makes the same sound — learn the rules once.</div>
+        </div>
+        <div class="mr-badge">A1 · Beginner</div>
+      </div>
+      <div class="module-row">
+        <div class="mr-num">01</div>
+        <div>
+          <div class="mr-title">Who Are You?</div>
+          <div class="mr-hook">Ser vs. Estar — two verbs that define identity and state.</div>
+        </div>
+        <div class="mr-badge">A1 · Beginner</div>
+      </div>
+      <div class="module-row">
+        <div class="mr-num">02</div>
+        <div>
+          <div class="mr-title">Going Places</div>
+          <div class="mr-hook">IR unlocks both the present and the near future from day one.</div>
+        </div>
+        <div class="mr-badge">A1–A2 · Beginner</div>
+      </div>
+      <div class="module-row">
+        <div class="mr-num">04</div>
+        <div>
+          <div class="mr-title">A Day in the Life</div>
+          <div class="mr-hook">Follow Tía Filomena through one full day — 40 essential verbs.</div>
+        </div>
+        <div class="mr-badge">A2 · Beginner</div>
+      </div>
+      <div class="module-row">
+        <div class="mr-num">08</div>
+        <div>
+          <div class="mr-title">Para vs Por</div>
+          <div class="mr-hook">Purpose vs. cause — the distinction that makes fluency feel real.</div>
+        </div>
+        <div class="mr-badge">B1–B2 · Intermediate</div>
+      </div>
+      <div class="module-row">
+        <div class="mr-num">12</div>
+        <div>
+          <div class="mr-title">The Subjunctive</div>
+          <div class="mr-hook">Not a tense — a lens you put over reality.</div>
+        </div>
+        <div class="mr-badge">B2 · Advanced</div>
+      </div>
+      <div class="module-row">
+        <div class="mr-num">16</div>
+        <div>
+          <div class="mr-title">Poetry, Song & Culture</div>
+          <div class="mr-hook">The highest fluency is feeling the culture, not just translating it.</div>
+        </div>
+        <div class="mr-badge">C1 · Advanced</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Signup -->
+<div class="signup-section" id="signup">
+  <div class="signup-eyebrow">Early access</div>
+  <h2 class="signup-title">Be the first to <em>explore</em> the full course</h2>
+  <p class="signup-desc">
+    Beyond the Plaza is still being built. Leave your email and you'll be first to know
+    when new modules open — no spam, just updates that matter.
+  </p>
+  <div class="signup-form" id="signup-form">
+    <input class="signup-input" type="email" id="email-input" placeholder="your@email.com" />
+    <button class="signup-btn" onclick="handleSignup()">Join waitlist</button>
+  </div>
+  <div class="signup-thanks" id="signup-thanks">
+    You're on the list. We'll be in touch soon.
+  </div>
+  <div class="signup-note" id="signup-note">No spam. Unsubscribe any time.</div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-brand">Beyond the Plaza</div>
+  <div class="footer-note">Spanish course · Curated guide & workbook for the modern traveller</div>
+</footer>
+
+<script>
+function handleSignup() {
+  const val = document.getElementById('email-input').value.trim();
+  if (!val || !val.includes('@')) {
+    document.getElementById('email-input').focus();
+    return;
+  }
+  document.getElementById('signup-form').style.display = 'none';
+  document.getElementById('signup-note').style.display = 'none';
+  document.getElementById('signup-thanks').style.display = 'block';
+}
+
+document.getElementById('email-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') handleSignup();
+});
+</script>
+
+</body>
+</html>
