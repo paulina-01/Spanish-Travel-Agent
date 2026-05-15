@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ConvertKit Form Reference — Beyond the Plaza</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700&family=DM+Sans:wght@300;400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body {
+    background: #E8E3D8;
+    font-family: 'DM Sans', sans-serif;
+    padding: 3rem 2rem;
+    color: #1C1C1A;
+  }
+
+  h2 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+    color: #7A7068; margin-bottom: 1rem; margin-top: 2.5rem;
+  }
+  h2:first-child { margin-top: 0; }
+
+  .preview-box {
+    background: #F5F0E8;
+    border: 1px solid rgba(61,74,46,.12);
+    border-radius: 4px;
+    padding: 4rem 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  code-block {
+    display: block;
+    background: #1C1C1A;
+    color: #E8E3D8;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    padding: 1.5rem;
+    border-radius: 4px;
+    white-space: pre;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+  }
+
+  .copy-btn {
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    letter-spacing: .1em; text-transform: uppercase;
+    background: #3D4A2E; color: #fff;
+    border: none; padding: 7px 16px; border-radius: 2px;
+    cursor: pointer; margin-bottom: 2.5rem;
+    transition: opacity .15s;
+  }
+  .copy-btn:hover { opacity: .85; }
+  .copy-btn.copied { background: #6B7A54; }
+
+  /* ── The actual form styles to paste into ConvertKit ── */
+  .ck-form-wrapper {
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .ck-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: .18em; text-transform: uppercase;
+    color: #C4614A; margin-bottom: 1rem;
+  }
+  .ck-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700; font-size: 32px; line-height: 1.15;
+    color: #1C1C1A; margin-bottom: .75rem;
+  }
+  .ck-title em { font-style: italic; color: #C4614A; }
+  .ck-desc {
+    font-size: 14px; color: #7A7068;
+    line-height: 1.7; font-weight: 300; margin-bottom: 2rem;
+    max-width: 480px; margin-left: auto; margin-right: auto;
+  }
+  .ck-form-row {
+    display: flex; gap: 8px;
+    max-width: 440px; margin: 0 auto 1rem;
+  }
+  .ck-input {
+    flex: 1; font-family: 'DM Sans', sans-serif; font-size: 13px;
+    padding: 11px 14px;
+    border: 1px solid rgba(61,74,46,.25);
+    border-radius: 2px; background: #fff;
+    color: #1C1C1A; outline: none;
+    transition: border-color .15s;
+  }
+  .ck-input:focus { border-color: #3D4A2E; }
+  .ck-input::placeholder { color: rgba(122,112,104,.55); }
+  .ck-btn {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: .1em; text-transform: uppercase;
+    background: #C4614A; color: #fff;
+    border: none; padding: 11px 22px;
+    border-radius: 2px; cursor: pointer;
+    transition: opacity .15s; white-space: nowrap;
+  }
+  .ck-btn:hover { opacity: .88; }
+  .ck-note {
+    font-family: 'DM Mono', monospace; font-size: 9px;
+    letter-spacing: .08em; color: #7A7068;
+  }
+</style>
+</head>
+<body>
+
+<h2>Live preview</h2>
+<div class="preview-box">
+  <div class="ck-form-wrapper">
+    <div class="ck-eyebrow">Early access</div>
+    <div class="ck-title">Be the first to <em>explore</em> the full course</div>
+    <p class="ck-desc">Beyond the Plaza is still being built. Leave your email and you'll be first to know when new modules open.</p>
+    <div class="ck-form-row">
+      <input class="ck-input" type="email" placeholder="your@email.com" />
+      <button class="ck-btn">Join waitlist</button>
+    </div>
+    <div class="ck-note">No spam. Unsubscribe any time.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     STEP 1 — Paste this into ConvertKit → Form → Style → Custom CSS
+     ═══════════════════════════════════════════════════ -->
+<h2>Step 1 — Custom CSS (paste into ConvertKit's CSS field)</h2>
+<code-block id="css-block">@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400&family=DM+Mono:wght@400;500&display=swap');
+
+.formkit-form {
+  background: transparent !important;
+  font-family: 'DM Sans', sans-serif !important;
+  text-align: center;
+}
+
+.formkit-field {
+  display: flex;
+  gap: 8px;
+  max-width: 440px;
+  margin: 0 auto 1rem;
+}
+
+.formkit-input {
+  flex: 1;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 13px !important;
+  padding: 11px 14px !important;
+  border: 1px solid rgba(61,74,46,.25) !important;
+  border-radius: 2px !important;
+  background: #fff !important;
+  color: #1C1C1A !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.formkit-input:focus {
+  border-color: #3D4A2E !important;
+}
+.formkit-input::placeholder {
+  color: rgba(122,112,104,.55) !important;
+}
+
+.formkit-submit {
+  font-family: 'DM Mono', monospace !important;
+  font-size: 10px !important;
+  letter-spacing: .1em !important;
+  text-transform: uppercase !important;
+  background: #C4614A !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 11px 22px !important;
+  border-radius: 2px !important;
+  cursor: pointer !important;
+  white-space: nowrap;
+  transition: opacity .15s;
+}
+.formkit-submit:hover { opacity: .88 !important; }
+
+.formkit-guarantee {
+  font-family: 'DM Mono', monospace !important;
+  font-size: 9px !important;
+  letter-spacing: .08em !important;
+  color: #7A7068 !important;
+}</code-block>
+<button class="copy-btn" onclick="copyBlock('css-block', this)">Copy CSS</button>
+
+<!-- ═══════════════════════════════════════════════════
+     STEP 2 — Paste this into ConvertKit → Form → Settings → Custom HTML (header area)
+     ═══════════════════════════════════════════════════ -->
+<h2>Step 2 — Header HTML (above the email field)</h2>
+<code-block id="html-block">&lt;div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#C4614A;margin-bottom:1rem;"&gt;
+  Early access
+&lt;/div&gt;
+&lt;div style="font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:32px;line-height:1.15;color:#1C1C1A;margin-bottom:.75rem;"&gt;
+  Be the first to &lt;em style="font-style:italic;color:#C4614A;"&gt;explore&lt;/em&gt; the full course
+&lt;/div&gt;
+&lt;p style="font-size:14px;color:#7A7068;line-height:1.7;font-weight:300;margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto;"&gt;
+  Beyond the Plaza is still being built. Leave your email and you'll be
+  first to know when new modules open.
+&lt;/p&gt;</code-block>
+<button class="copy-btn" onclick="copyBlock('html-block', this)">Copy HTML</button>
+
+<script>
+function copyBlock(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = btn.id === 'css-block' ? 'Copy CSS' : 'Copy HTML'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
