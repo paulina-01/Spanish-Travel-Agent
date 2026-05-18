@@ -1,0 +1,246 @@
+<!-- SOURCE: Splash-draftv3-parrot.html -->
+
+    <!-- Step 0: Vowels -->
+    <div class="step-panel active" id="step-0">
+      <div class="hook-block">
+        <div class="hook-label">The hook</div>
+        <div class="hook-text">"Spanish is phonetically consistent — every letter always makes the same sound. Learn these rules once, and you can pronounce <em>any</em> word correctly, even ones you've never seen."</div>
+      </div>
+      <div>
+        <div class="section-heading">The 5 vowels — pure, unchanging sounds</div>
+        <div class="vowel-row">
+          <div class="vowel-card"><div class="vowel-letter">A</div><div class="vowel-sound">Ah</div><div class="vowel-eg">as in "father"</div></div>
+          <div class="vowel-card"><div class="vowel-letter">E</div><div class="vowel-sound">Eh</div><div class="vowel-eg">as in "bed"</div></div>
+          <div class="vowel-card"><div class="vowel-letter">I</div><div class="vowel-sound">Eeh</div><div class="vowel-eg">as in "see"</div></div>
+          <div class="vowel-card"><div class="vowel-letter">O</div><div class="vowel-sound">Oh</div><div class="vowel-eg">as in "go"</div></div>
+          <div class="vowel-card"><div class="vowel-letter">U</div><div class="vowel-sound">Ooh</div><div class="vowel-eg">as in "moon"</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-heading">Open vs. closed vowels</div>
+        <div class="oc-grid">
+          <div class="oc-card oc-open">
+            <div class="oc-label">Open vowels</div>
+            <div class="oc-letters"><div class="oc-letter">A</div><div class="oc-letter">E</div><div class="oc-letter">O</div></div>
+            <div class="oc-note">Mouth open, more resonant</div>
+          </div>
+          <div class="oc-card oc-closed">
+            <div class="oc-label">Closed vowels</div>
+            <div class="oc-letters"><div class="oc-letter">I</div><div class="oc-letter">U</div></div>
+            <div class="oc-note">Mouth more closed, tighter</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="nav-btn" disabled>← Prev</button>
+        <span class="nav-counter">1 / 6</span>
+        <button class="nav-btn" onclick="goStep(1)">Next: Consonants →</button>
+      </div>
+    </div>
+
+    <!-- Step 1: Consonants -->
+    <div class="step-panel" id="step-1">
+      <div>
+        <div class="section-heading">Special consonants — CH · LL · Ñ</div>
+        <div class="cons-list">
+          <div class="cons-row">
+            <div><div class="cons-letter">CH</div><div class="cons-sound">(che)</div></div>
+            <div><div class="cons-rule">Sounds like the "ch" in English <em>cheese</em>.</div><div class="cons-eg">¡Chévere! — "Cool / Awesome"</div></div>
+          </div>
+          <div class="cons-row">
+            <div><div class="cons-letter">LL</div><div class="cons-sound">(elle)</div></div>
+            <div><div class="cons-rule">Sounds like the "y" in <em>yes</em>. Regional variation applies.</div><div class="cons-eg">lluvia — "rain"</div></div>
+          </div>
+          <div class="cons-row">
+            <div><div class="cons-letter">Ñ</div><div class="cons-sound">(eñe)</div></div>
+            <div><div class="cons-rule">Sounds like "ny" in <em>canyon</em>. A completely separate letter from N.</div><div class="cons-eg">niño — "kid / boy"</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="section-heading">The tricky trio — H · J · G</div>
+        <div class="cons-list">
+          <div class="cons-row">
+            <div><div class="cons-letter">H</div><div class="cons-sound">(silent)</div></div>
+            <div><div class="cons-rule">Always completely silent — never pronounced (does provide a pause)</div><div class="cons-eg">hola → "oh-lah", not "hoh-lah"</div></div>
+          </div>
+          <div class="cons-row">
+            <div><div class="cons-letter">J</div><div class="cons-sound">(heh)</div></div>
+            <div><div class="cons-rule">A strong rasping "h" — never like English J.</div><div class="cons-eg">jugo → "juice" (sounds like "hoo-go")</div></div>
+          </div>
+          <div class="cons-row">
+            <div><div class="cons-letter">G</div><div class="cons-sound">(context)</div></div>
+            <div><div class="cons-rule">Like J before E/I. Hard G before A/O/U or closed vowel after Ü.</div><div class="cons-eg">gato → hard G &nbsp;|&nbsp; pingüino → hard G</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="nav-btn" onclick="goStep(0)">← Prev</button>
+        <span class="nav-counter">2 / 6</span>
+        <button class="nav-btn" onclick="goStep(2)">Next: Stress →</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Tonic Syllable -->
+    <div class="step-panel" id="step-2">
+      <div class="hook-block">
+        <div class="hook-label">Sílaba tónica</div>
+        <div class="hook-text">"Every Spanish word has one syllable that carries the stress. Spanish classifies words by <em>where</em> that stress falls — learn the three types and you can read any word aloud."</div>
+      </div>
+      <div>
+        <div class="section-heading">The three word types by stress position</div>
+        <div class="stress-list">
+          <div class="stress-block">
+            <div class="stress-rule"><strong>Agudas</strong> — tonic syllable is the <em>last</em> syllable</div>
+            <div class="syllables">
+              <span class="syl">ca</span><span class="syl-sep">·</span><span class="syl stressed">fé</span>
+              <span style="display:inline-block;width:16px"></span>
+              <span class="syl">can</span><span class="syl-sep">·</span><span class="syl stressed">ción</span>
+              <span style="display:inline-block;width:16px"></span>
+              <span class="syl">a</span><span class="syl-sep">·</span><span class="syl stressed">mor</span>
+            </div>
+          </div>
+          <div class="stress-block">
+            <div class="stress-rule"><strong>Llanas / Graves</strong> — tonic syllable is the <em>second-to-last</em> syllable</div>
+            <div class="syllables">
+              <span class="syl stressed">me</span><span class="syl-sep">·</span><span class="syl">sa</span>
+              <span style="display:inline-block;width:16px"></span>
+              <span class="syl stressed">lá</span><span class="syl-sep">·</span><span class="syl">piz</span>
+              <span style="display:inline-block;width:16px"></span>
+              <span class="syl stressed">ca</span><span class="syl-sep">·</span><span class="syl">nan</span>
+            </div>
+          </div>
+          <div class="stress-block">
+            <div class="stress-rule"><strong>Esdrújulas</strong> — tonic syllable is the <em>third-to-last</em> syllable</div>
+            <div class="syllables">
+              <span class="syl stressed">pá</span><span class="syl-sep">·</span><span class="syl">ja</span><span class="syl-sep">·</span><span class="syl">ro</span>
+              <span style="display:inline-block;width:16px"></span>
+              <span class="syl stressed">mú</span><span class="syl-sep">·</span><span class="syl">si</span><span class="syl-sep">·</span><span class="syl">ca</span>
+              <span style="display:inline-block;width:16px"></span>
+              <span class="syl stressed">sí</span><span class="syl-sep">·</span><span class="syl">la</span><span class="syl-sep">·</span><span class="syl">ba</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="drill-block">
+        <div class="drill-label">Identify the type</div>
+        <div class="drill-text">
+          <strong>robot</strong> → Aguda &nbsp;·&nbsp;
+          <strong>zapato</strong> → Llana &nbsp;·&nbsp;
+          <strong>teléfono</strong> → Esdrújula &nbsp;·&nbsp;
+          <strong>cantar</strong> → Aguda
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="nav-btn" onclick="goStep(1)">← Prev</button>
+        <span class="nav-counter">3 / 6</span>
+        <button class="nav-btn" onclick="goStep(3)">Next: Accent Mark →</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Accent Mark (Tilde) -->
+    <div class="step-panel" id="step-3">
+      <div class="hook-block">
+        <div class="hook-label">La tilde</div>
+        <div class="hook-text">"The written accent mark doesn't <em>create</em> the stress — it just marks when the word breaks the default rule for its type."</div>
+      </div>
+      <div>
+        <div class="section-heading">When does each type get a tilde?</div>
+        <div class="stress-list">
+          <div class="stress-block">
+            <div class="stress-rule"><strong>Agudas</strong> get a tilde if they end in <em>vowel, N, or S</em></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">café ✓</span>
+              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">canción ✓</span>
+              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">compás ✓</span>
+              <span class="vocab-pill" style="opacity:.55">amor ✗</span>
+              <span class="vocab-pill" style="opacity:.55">robot ✗</span>
+              <span class="vocab-pill" style="opacity:.55">cantar ✗</span>
+            </div>
+            <div style="font-size:10px;color:var(--muted);margin-top:6px;font-style:italic">Exception: ends in S preceded by a consonant → no tilde (robots)</div>
+          </div>
+          <div class="stress-block">
+            <div class="stress-rule"><strong>Llanas</strong> get a tilde if they end in a <em>consonant other than N or S</em></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">lápiz ✓</span>
+              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">árbol ✓</span>
+              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">dólar ✓</span>
+              <span class="vocab-pill" style="opacity:.55">mesa ✗</span>
+              <span class="vocab-pill" style="opacity:.55">cantan ✗</span>
+              <span class="vocab-pill" style="opacity:.55">lunes ✗</span>
+            </div>
+            <div style="font-size:10px;color:var(--muted);margin-top:6px;font-style:italic">Exception: ends in S preceded by a consonant → does get tilde (bíceps)</div>
+          </div>
+          <div class="stress-block">
+            <div class="stress-rule"><strong>Esdrújulas</strong> — <em>always</em> get a tilde, no exceptions</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">pájaro ✓</span>
+              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">música ✓</span>
+              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">mágico ✓</span>
+              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">teléfono ✓</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="nav-btn" onclick="goStep(2)">← Prev</button>
+        <span class="nav-counter">4 / 6</span>
+        <button class="nav-btn" onclick="goStep(4)">Next: Diphthongs →</button>
+      </div>
+    </div>
+
+<!-- Step 4: Diphthongs -->
+    <div class="step-panel" id="step-4">
+      <div class="hook-block">
+        <div class="hook-label">Hiato vs. Diptongo</div>
+        <div class="hook-text">"When two vowels meet, whether they blend into one syllable or split into two depends entirely on open vs. closed."</div>
+      </div>
+      <div>
+        <div class="section-heading">Vowel combinations</div>
+        <table class="dip-table">
+          <thead>
+            <tr><th>Combination</th><th>Result</th><th>Spanish example</th><th>English feel</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="combo-pill combo-d">closed + closed</span></td><td>Diptongo — one syllable</td><td>ciudad · viuda</td><td>"city" · "widow"</td></tr>
+            <tr><td><span class="combo-pill combo-d">open + closed</span></td><td>Diptongo — one syllable</td><td>zanahoria · grúa</td><td>"root" · "fry"</td></tr>
+            <tr><td><span class="combo-pill combo-d">closed + open</span></td><td>Diptongo — one syllable</td><td>nieve · bueno</td><td>"trip" · "snow"</td></tr>
+            <tr><td><span class="combo-pill combo-h">open + open</span></td><td>Hiato — two syllables</td><td>teatro · jaula</td><td>"theatre" · "mail"</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="drill-block">
+        <div class="drill-label">Quick drill</div>
+        <div class="drill-text">Diptongo or Hiato? &nbsp;<strong>toalla · sandía · ciudad · teatro · grúa</strong></div>
+      </div>
+      <div class="step-nav">
+        <button class="nav-btn" onclick="goStep(3)">← Prev</button>
+        <span class="nav-counter">5 / 6</span>
+        <button class="nav-btn" onclick="goStep(5)">Next: Practice →</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Practice -->
+    <div class="step-panel" id="step-5">
+      <div>
+        <div class="section-heading">Gender + pronunciation drill</div>
+        <div class="vocab-strip" id="drill-pills"></div>
+      </div>
+      <div class="sentence-block">
+        <div class="sentence-es">El niño es chévere y la niña también.</div>
+        <div class="sentence-en">The boy is cool and the girl too.</div>
+      </div>
+      <div class="drill-block">
+        <div class="drill-label">Practice drill</div>
+        <div class="drill-text">Read each word aloud and mark the stressed syllable. Then translate the capstone sentence and name every pronunciation rule you used.</div>
+      </div>
+      <div class="culture-block">
+        <div class="culture-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+        <div class="culture-text"><strong>Culture note — </strong>Chévere packs the tonic syllable rule, the CH sound, and the accent mark all into one word. It's used across Latin America to mean "cool" — the perfect pronunciation showcase.</div>
+      </div>
+      <div class="step-nav">
+        <button class="nav-btn" onclick="goStep(4)">← Prev</button>
+        <span class="nav-counter">6 / 6</span>
+        <button class="nav-btn" style="background:var(--olive);color:var(--white);border-color:var(--olive)" disabled>Complete ✓</button>
+      </div>
+    </div>
