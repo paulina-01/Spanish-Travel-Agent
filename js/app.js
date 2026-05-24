@@ -31,11 +31,8 @@ function render(i) {
   document.getElementById('panel-m0').style.display       = isM0 ? 'flex' : 'none';
 
   if (!isM0) {
-    document.getElementById('std-content').style.display  = '';
-    document.getElementById('std-signup').style.display   = 'none';
-    document.getElementById('signup-email').value         = '';
-    document.querySelector('.signup-row').style.display   = '';
-    document.getElementById('signup-thanks').style.display = 'none';
+    document.getElementById('std-content').style.display = '';
+    document.getElementById('std-signup').style.display  = 'none';
   }
   document.getElementById('m0-dots').style.display        = isM0 ? 'flex' : 'none';
   document.getElementById('m0-step-label').style.display  = isM0 ? 'block' : 'none';
@@ -69,43 +66,12 @@ modules.forEach((m,i) => {
   switcher.appendChild(b);
 });
 
-const CK_API_KEY = 'YOUR_API_KEY';
-const CK_FORM_ID = 'YOUR_FORM_ID';
-
 function showSignup() {
   document.getElementById('std-content').style.display = 'none';
   document.getElementById('std-signup').style.display  = 'flex';
 }
 
 window.showSignup = showSignup;
-
-async function handleSignup() {
-  const input = document.getElementById('signup-email');
-  const btn   = document.querySelector('#std-signup .nav-btn');
-  const val   = input.value.trim();
-  if (!val || !val.includes('@')) { input.focus(); return; }
-
-  btn.textContent = 'Sending…';
-  btn.disabled = true;
-
-  try {
-    const res = await fetch(`https://api.convertkit.com/v3/forms/${CK_FORM_ID}/subscribe`, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ api_key: CK_API_KEY, email: val }),
-    });
-    if (!res.ok) throw new Error();
-
-    document.querySelector('.signup-row').style.display    = 'none';
-    document.getElementById('signup-thanks').style.display = 'block';
-  } catch {
-    btn.textContent = 'Try again';
-    btn.disabled = false;
-    input.style.borderColor = 'var(--terracotta)';
-  }
-}
-
-window.handleSignup = handleSignup;
 
 const m0html = await fetch('modules/m0-sound-like-spanish.html').then(r => r.text());
 document.getElementById('panel-m0').innerHTML = m0html;

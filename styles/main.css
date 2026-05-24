@@ -226,3 +226,29 @@
   .signup-input { flex: 1; font-family: var(--font-body); font-size: 12px; padding: 7px 12px; border: 1px solid rgba(61,74,46,.3); border-radius: 2px; background: var(--white); color: var(--charcoal); outline: none; }
   .signup-input:focus { border-color: var(--olive); }
   .signup-thanks { display: none; font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; color: var(--olive-mid); }
+  .signup-note { font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; color: var(--muted); }
+
+  /* Kit embed overrides — scoped to module signup screen */
+  #std-signup .formkit-form { background: transparent !important; box-shadow: none !important; padding: 0 !important; border-radius: 0 !important; max-width: 340px; }
+  #std-signup .seva-fields { display: flex !important; gap: 8px !important; flex-wrap: nowrap !important; }
+  #std-signup .formkit-field { flex: 1 !important; min-width: 0 !important; margin: 0 !important; }
+  #std-signup .formkit-input {
+    width: 100% !important; font-family: var(--font-body) !important;
+    font-size: 12px !important; padding: 7px 12px !important;
+    border: 1px solid rgba(61,74,46,.3) !important; border-radius: 2px !important;
+    background: var(--white) !important; color: var(--charcoal) !important;
+    outline: none !important; box-shadow: none !important;
+  }
+  #std-signup .formkit-input::placeholder { color: rgba(122,112,104,.55) !important; }
+  #std-signup .formkit-input:focus { border-color: var(--olive) !important; }
+  #std-signup .formkit-submit {
+    font-family: var(--font-mono) !important; font-size: 9px !important;
+    letter-spacing: .1em !important; text-transform: uppercase !important;
+    background: var(--olive) !important; color: var(--white) !important;
+    border: 1px solid var(--olive) !important; padding: 5px 13px !important;
+    border-radius: 2px !important; cursor: pointer !important;
+    white-space: nowrap !important; transition: background .15s !important;
+  }
+  #std-signup .formkit-submit:hover { opacity: .88 !important; }
+  #std-signup .formkit-guarantee,
+  #std-signup .formkit-powered-by-convertkit-container { display: none !important; }
