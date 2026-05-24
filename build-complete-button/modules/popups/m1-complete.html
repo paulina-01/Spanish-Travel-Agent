@@ -1,0 +1,34 @@
+<!--
+  Module M1 completion popup.
+  Loaded by js/popups.js when showPopup('m1') is called.
+  Stand-alone HTML snippet — no <html>/<head> wrapper. Styled by styles/popups.css.
+-->
+<div class="popup popup--m1" role="dialog" aria-modal="true" aria-labelledby="popup-m1-title">
+  <div class="popup-hero">
+    <div class="popup-scene">
+      <svg viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="22" fill="none" stroke="#3D4A2E" stroke-width="2"/>
+      <path d="M32 12 L37 32 L32 52 L27 32 Z" fill="#C4614A"/>
+      <path d="M12 32 L32 27 L52 32 L32 37 Z" fill="#3D4A2E" opacity=".75"/>
+      <circle cx="32" cy="32" r="3" fill="#C9A84C"/>
+      <text x="32" y="9" text-anchor="middle" style="font-family:'DM Mono',monospace;font-size:7px;fill:#3D4A2E;letter-spacing:.1em">N</text>
+    </svg>
+    </div>
+    <span class="popup-pill">M1 · Complete</span>
+    <div class="popup-title" id="popup-m1-title">Self, found.</div>
+  </div>
+  <div class="popup-body">
+    <p class="popup-recap">You know who you <em>are</em> — and who you only <em>are right now</em>. Compass set.</p>
+    <div class="popup-next">
+      <div class="popup-next-num">2</div>
+      <div class="popup-next-info">
+        <div class="popup-next-up">Next up</div>
+        <div class="popup-next-name">Going Places · IR &amp; the near future</div>
+      </div>
+    </div>
+    <div class="popup-cta-row">
+      <button class="popup-cta" data-action="review">Review</button>
+      <button class="popup-cta popup-cta--primary" data-action="next">Begin M2 →</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,176 @@
+/*
+ * Module completion popups
+ * Drop-in stylesheet. Pairs with js/popups.js and modules/popups/*.html.
+ * Relies on the CSS custom properties already defined in styles/main.css
+ * (--cream, --terracotta, --olive, --gold, --charcoal, --muted, fonts, etc.).
+ */
+
+/* ── Scrim / backdrop ── */
+.popup-scrim {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(28, 28, 26, .48);
+  backdrop-filter: blur(3px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.5rem;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s ease;
+}
+.popup-scrim.is-open { opacity: 1; pointer-events: auto; }
+
+/* ── Modal shell ── */
+.popup {
+  width: 100%; max-width: 380px;
+  background: var(--white, #FFFFFF);
+  border-radius: 6px;
+  box-shadow: 0 24px 56px rgba(28,28,26,.32), 0 2px 6px rgba(28,28,26,.12);
+  overflow: hidden;
+  transform: translateY(14px) scale(.96);
+  transition: transform .35s cubic-bezier(.22, 1.2, .36, 1);
+}
+.popup-scrim.is-open .popup { transform: translateY(0) scale(1); }
+
+/* ── Hero block (varies per module via .popup--mN) ── */
+.popup-hero {
+  position: relative; padding: 1.6rem 1.25rem 1.15rem;
+  text-align: center; overflow: hidden;
+}
+.popup-scene { width: 110px; height: 110px; margin: 0 auto .85rem; position: relative; z-index: 2; }
+.popup-scene svg { width: 100%; height: 100%; display: block; }
+
+.popup-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: .14em;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 20px;
+  position: relative; z-index: 2;
+}
+.popup-pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+
+.popup-title {
+  position: relative; z-index: 2;
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  font-size: 24px; line-height: 1.15; margin: .7rem auto 0;
+  max-width: 280px;
+}
+
+/* ── Body block ── */
+.popup-body { padding: 1.1rem 1.25rem 1.25rem; }
+.popup-recap {
+  font-size: 11.5px; color: var(--muted); line-height: 1.55;
+  text-align: center; margin-bottom: 1rem;
+}
+.popup-recap em { font-style: italic; color: var(--charcoal); }
+
+.popup-next {
+  background: var(--cream); border-radius: 3px; padding: .75rem .85rem;
+  margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;
+}
+.popup-next-num {
+  width: 30px; height: 30px; border-radius: 50%; background: var(--terracotta);
+  color: var(--white); font-family: var(--font-display); font-weight: 900;
+  font-size: 13px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.popup-next-info { flex: 1; min-width: 0; }
+.popup-next-up {
+  font-family: var(--font-mono); font-size: 8px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--terracotta);
+}
+.popup-next-name {
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  font-size: 14px; line-height: 1.2;
+}
+
+.popup-cta-row { display: flex; gap: 8px; }
+.popup-cta {
+  flex: 1; font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; padding: 12px 14px; border-radius: 3px;
+  border: 1px solid rgba(61,74,46,.18); background: transparent; color: var(--olive);
+  cursor: pointer; transition: background .15s, color .15s;
+}
+.popup-cta:hover { background: rgba(61,74,46,.06); }
+.popup-cta--primary { background: var(--olive); color: var(--white); border-color: var(--olive); }
+.popup-cta--primary:hover { background: #2e3923; }
+
+/* ── Per-module hero palettes ── */
+
+/* M0 → M1 · You've found the plaza. */
+.popup--m0 .popup-hero { background: var(--olive); color: var(--white); }
+.popup--m0 .popup-hero::before {
+  content: ''; position: absolute; left: -50px; bottom: -50px;
+  width: 160px; height: 160px; border-radius: 50%;
+  background: var(--terracotta); opacity: .12;
+}
+.popup--m0 .popup-hero::after {
+  content: ''; position: absolute; right: -30px; top: 18px;
+  width: 78px; height: 78px; border-radius: 50%;
+  border: 1px solid rgba(201,168,76,.22);
+}
+.popup--m0 .popup-pill { background: rgba(201,168,76,.16); color: var(--gold); border: 1px solid rgba(201,168,76,.4); }
+
+/* M1 → M2 · Self, found. */
+.popup--m1 .popup-hero {
+  background: linear-gradient(160deg, #F5D5CC 0%, #F5F0E8 60%);
+  color: var(--charcoal);
+}
+.popup--m1 .popup-hero::before {
+  content: ''; position: absolute; right: -40px; top: -40px;
+  width: 130px; height: 130px; border-radius: 50%;
+  background: var(--terracotta); opacity: .1;
+}
+.popup--m1 .popup-pill { background: rgba(196,97,74,.12); color: var(--terracotta); border: 1px solid rgba(196,97,74,.3); }
+.popup--m1 .popup-title { color: var(--olive); }
+
+/* M2 → M4 · Through the archway. */
+.popup--m2 .popup-hero {
+  background: linear-gradient(180deg, #F0E0A8 0%, #E8927C 100%);
+  color: var(--charcoal);
+}
+.popup--m2 .popup-hero::before {
+  content: ''; position: absolute; left: -30px; bottom: -30px;
+  width: 110px; height: 110px; border-radius: 50%;
+  background: var(--olive); opacity: .08;
+}
+.popup--m2 .popup-pill { background: rgba(61,74,46,.14); color: var(--olive); border: 1px solid rgba(61,74,46,.3); }
+.popup--m2 .popup-title { color: var(--olive); }
+
+/* M4 → M8 · Tiles of a life. */
+.popup--m4 .popup-hero { background: var(--terracotta); color: var(--white); position: relative; }
+.popup--m4 .popup-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(45deg, rgba(245,240,232,.06) 25%, transparent 25%, transparent 75%, rgba(245,240,232,.06) 75%),
+    linear-gradient(45deg, rgba(245,240,232,.06) 25%, transparent 25%, transparent 75%, rgba(245,240,232,.06) 75%);
+  background-size: 22px 22px;
+  background-position: 0 0, 11px 11px;
+}
+.popup--m4 .popup-pill { background: rgba(255,255,255,.18); color: var(--white); border: 1px solid rgba(255,255,255,.4); }
+
+/* M8 → M12 · Into the jungle we go. */
+.popup--m8 .popup-hero { background: #2B4A2F; color: var(--white); }
+.popup--m8 .popup-hero::before {
+  content: ''; position: absolute; left: -30px; bottom: -50px;
+  width: 130px; height: 130px;
+  background: radial-gradient(circle at 50% 50%, rgba(201,168,76,.18) 0%, transparent 70%);
+}
+.popup--m8 .popup-hero::after {
+  content: ''; position: absolute; right: -40px; top: -40px;
+  width: 110px; height: 110px;
+  background: radial-gradient(circle at 50% 50%, rgba(196,97,74,.22) 0%, transparent 70%);
+}
+.popup--m8 .popup-pill { background: rgba(201,168,76,.18); color: var(--gold); border: 1px solid rgba(201,168,76,.45); }
+
+/* M12 → M16 · The wild speaks. */
+.popup--m12 .popup-hero { background: #14181D; color: var(--white); }
+.popup--m12 .popup-hero::before {
+  content: '·  ·    ·   ·  ·     ·   ·';
+  position: absolute; top: 10px; left: 16px; right: 16px;
+  font-family: var(--font-mono); font-size: 14px;
+  color: rgba(201,168,76,.45); letter-spacing: .4em;
+  pointer-events: none;
+}
+.popup--m12 .popup-hero::after {
+  content: ''; position: absolute; right: -50px; bottom: -50px;
+  width: 140px; height: 140px;
+  background: radial-gradient(circle at 50% 50%, rgba(196,97,74,.16) 0%, transparent 70%);
+}
+.popup--m12 .popup-pill { background: rgba(201,168,76,.16); color: var(--gold); border: 1px solid rgba(201,168,76,.4); }
