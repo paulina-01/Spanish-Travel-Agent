@@ -90,6 +90,7 @@ function showSignup() {
 }
 
 window.showSignup = showSignup;
+window.render = render;
 
 const m0html = await fetch('modules/m0-sound-like-spanish.html').then(r => r.text());
 document.getElementById('panel-m0').innerHTML = m0html;
