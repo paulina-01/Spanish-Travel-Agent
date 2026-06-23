@@ -1,49 +1,318 @@
 <!-- SOURCE: Splash-draftv3-parrot.html -->
-<!-- MODULE: M1 — Who Are You? -->
+<!-- MODULE: M1 — Who Are You? (Ser vs Estar) -->
 <!-- Level: A1 | Track: Beginner | Students: All students -->
 <!--
-  Data-driven module — content injected by render() in js/app.js.
-  To edit content, update the matching entry in data/modules.js.
-  To add a multi-step panel (like M0), add a <div id="panel-m1">
-  to Splash-draftv3-parrot.html and add a fetch() call in js/app.js.
+  Multi-step panel (same pattern as m0-sound-like-spanish.html).
+  Injected into #panel-m1 by render() in js/app.js; nav via goStep(n).
+  Header/dots/labels live in Splash-draftv3-parrot.html (#m1-dots, #m1-step-label).
+  Component styles: styles/main.css → "Module 1" section.
 -->
 
-<div class="std-view">
-  <div class="hook-block">
-    <div class="hook-label">The hook</div>
-    <div class="hook-text">"Spanish has two verbs for 'to be' — and choosing wrong makes you sound completely different."</div>
-  </div>
-  <div>
-    <div class="section-heading">Core concepts</div>
-    <div class="concept-list">
-      <div class="concept-item"><div class="concept-dot"></div><span>Ser = permanent identity (who you are)</span></div>
-      <div class="concept-item"><div class="concept-dot"></div><span>Estar = temporary state (how you feel)</span></div>
-      <div class="concept-item"><div class="concept-dot"></div><span>Full pronoun conjugation for both verbs</span></div>
+    <!-- Page 1 · existing website module content -->
+    <div class="step-panel active" id="m1-step-0">
+      <div class="hook-block">
+        <div class="hook-label">The hook</div>
+        <div class="hook-text">"Spanish has two verbs for 'to be' — and choosing wrong makes you sound completely different."</div>
+      </div>
+      <div>
+        <div class="section-heading">Core concepts</div>
+        <div class="concept-list">
+          <div class="concept-item"><div class="concept-dot"></div><span>Ser = permanent identity (who you are)</span></div>
+          <div class="concept-item"><div class="concept-dot"></div><span>Estar = temporary state (how you feel)</span></div>
+          <div class="concept-item"><div class="concept-dot"></div><span>Full pronoun conjugation for both verbs</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-heading">Key vocabulary</div>
+        <div class="vocab-strip">
+          <span class="vocab-pill">soy / eres / es</span>
+          <span class="vocab-pill">estoy / estás / está</span>
+          <span class="vocab-pill">somos / estamos</span>
+          <span class="vocab-pill">elegante · inteligente</span>
+          <span class="vocab-pill">cansado · feliz</span>
+        </div>
+      </div>
+      <div class="sentence-block">
+        <div class="sentence-es">Nosotros somos carismáticos pero no somos elegantes.</div>
+        <div class="sentence-en">We are charismatic but we are not elegant.</div>
+      </div>
+      <div class="drill-block">
+        <div class="drill-label">Practice drill</div>
+        <div class="drill-text">Ser or Estar? Complete: Yo ___ de Canadá. / Ella ___ cansada hoy.</div>
+      </div>
+      <div class="culture-block">
+        <div class="culture-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+        <div class="culture-text"><strong>Culture note — </strong>Estoy cansado means you had a long day — not that you're a tired person. Your mood is always temporary in Spanish.</div>
+      </div>
+      <div class="step-nav">
+        <button class="nav-btn" disabled>← Prev</button>
+        <span class="nav-counter">1 / 7</span>
+        <button class="nav-btn" onclick="goStep(1)">Next: The base →</button>
+      </div>
     </div>
-  </div>
-  <div>
-    <div class="section-heading">Key vocabulary</div>
-    <div class="vocab-strip">
-      <span class="vocab-pill">soy / eres / es</span>
-      <span class="vocab-pill">estoy / estás / está</span>
-      <span class="vocab-pill">somos / estamos</span>
-      <span class="vocab-pill">elegante · inteligente</span>
-      <span class="vocab-pill">cansado · feliz</span>
+
+    <!-- Page 2 · Conjugation base — the 5 tenses -->
+    <div class="step-panel" id="m1-step-1">
+      <div class="hook-block">
+        <div class="hook-label">Your conjugation base</div>
+        <div class="hook-text">"Every verb you'll ever learn lives on the same five tenses. Master the pattern once — with <em>ser</em> and <em>estar</em> — and every verb after follows."</div>
+      </div>
+      <div>
+        <div class="section-heading">The five indicative tenses</div>
+        <div class="tense-list">
+          <div class="tense-row">
+            <div class="tense-head"><span class="tense-name">Present</span><span class="tense-tag">now</span></div>
+            <div class="tense-gloss">What is, or is happening, right now.</div>
+            <div class="tense-eg">Soy ingeniero. Estoy cansado. <span>— I am an engineer. I am tired.</span></div>
+          </div>
+          <div class="tense-row">
+            <div class="tense-head"><span class="tense-name">Preterite</span><span class="tense-tag">completed past</span></div>
+            <div class="tense-gloss">A finished action — it happened, it's done.</div>
+            <div class="tense-eg">Fui jugador de básquetbol, pero ya no juego. <span>— I was a basketball player, but I don't play anymore.</span></div>
+          </div>
+          <div class="tense-row">
+            <div class="tense-head"><span class="tense-name">Imperfect</span><span class="tense-tag">used-to · ongoing past</span></div>
+            <div class="tense-gloss">A background, habit, or "used to" in the past.</div>
+            <div class="tense-eg">Yo estaba feliz el verano pasado. <span>— I was happy last summer.</span></div>
+          </div>
+          <div class="tense-row prev">
+            <div class="tense-head"><span class="tense-name">Conditional</span><span class="tense-tag">preview · would</span></div>
+            <div class="tense-gloss">What <em>would</em> be, under some condition.</div>
+            <div class="tense-eg">Yo sería bombero de México si viviera ahí. <span>— I would be a firefighter in Mexico if I lived there.</span></div>
+          </div>
+          <div class="tense-row prev">
+            <div class="tense-head"><span class="tense-name">Future</span><span class="tense-tag">preview · will</span></div>
+            <div class="tense-gloss">What <em>will</em> be, later on.</div>
+            <div class="tense-eg">Seré ingeniero. <span>— I will be an engineer.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="conj-note">For A1 we drill <strong>Present · Preterite · Imperfect</strong>. <span class="col-prev" style="color:rgba(28,28,26,.42)">Conditional &amp; Future</span> ride along as preview — you'll meet them fully later.</div>
+      <div class="step-nav">
+        <button class="nav-btn" onclick="goStep(0)">← Prev</button>
+        <span class="nav-counter">2 / 7</span>
+        <button class="nav-btn" onclick="goStep(2)">Next: Ser →</button>
+      </div>
     </div>
-  </div>
-  <div class="sentence-block">
-    <div class="sentence-es">Nosotros somos carismáticos pero no somos elegantes.</div>
-    <div class="sentence-en">We are charismatic but we are not elegant.</div>
-  </div>
-  <div class="drill-block">
-    <div class="drill-label">Practice drill</div>
-    <div class="drill-text">Ser or Estar? Complete: Yo ___ de Canadá. / Ella ___ cansada hoy.</div>
-  </div>
-  <div class="culture-block">
-    <div class="culture-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
-    <div class="culture-text"><strong>Culture note — </strong>Estoy cansado means you had a long day — not that you're a tired person. Your mood is always temporary in Spanish.</div>
-  </div>
-  <div class="step-nav" style="justify-content:flex-end">
-    <button class="nav-btn" onclick="showSignup()">Next →</button>
-  </div>
-</div>
+
+    <!-- Page 3 · Ser -->
+    <div class="step-panel" id="m1-step-2">
+      <div>
+        <div class="section-heading">Ser — present tense · start here</div>
+        <div class="conj-grid conj-ser">
+          <div class="conj-cell"><div class="conj-pron">yo</div><div class="conj-form">soy</div></div>
+          <div class="conj-cell"><div class="conj-pron">tú</div><div class="conj-form">eres</div></div>
+          <div class="conj-cell"><div class="conj-pron">él · ella · usted</div><div class="conj-form">es</div></div>
+          <div class="conj-cell"><div class="conj-pron">nosotros</div><div class="conj-form">somos</div></div>
+          <div class="conj-cell"><div class="conj-pron">vosotros</div><div class="conj-form">sois</div></div>
+          <div class="conj-cell"><div class="conj-pron">ellos · ustedes</div><div class="conj-form">son</div></div>
+        </div>
+        <div class="conj-note">Drop the pronoun — <strong>Soy bombero.</strong> Add <em>yo</em> only to emphasize.</div>
+      </div>
+      <div>
+        <div class="section-heading">Ser — all tenses</div>
+        <table class="conj-table">
+          <thead>
+            <tr><th class="pron"></th><th>Present</th><th>Preterite</th><th>Imperfect</th><th class="col-prev">Cond.<small>preview</small></th><th class="col-prev">Future<small>preview</small></th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="pron">yo</td><td>so<span class="irr">y</span></td><td><span class="irr">fui</span></td><td><span class="irr">er</span>a</td><td class="col-prev">sería</td><td class="col-prev">seré</td></tr>
+            <tr><td class="pron">tú</td><td><span class="irr">er</span>es</td><td><span class="irr">fui</span>ste</td><td><span class="irr">er</span>as</td><td class="col-prev">serías</td><td class="col-prev">serás</td></tr>
+            <tr><td class="pron">él/ella</td><td><span class="irr">es</span></td><td><span class="irr">fue</span></td><td><span class="irr">er</span>a</td><td class="col-prev">sería</td><td class="col-prev">será</td></tr>
+            <tr><td class="pron">nos.</td><td>s<span class="irr">o</span>mos</td><td><span class="irr">fui</span>mos</td><td><span class="irr">ér</span>amos</td><td class="col-prev">seríamos</td><td class="col-prev">seremos</td></tr>
+            <tr><td class="pron">vos.</td><td>s<span class="irr">oi</span>s</td><td><span class="irr">fui</span>steis</td><td><span class="irr">er</span>ais</td><td class="col-prev">seríais</td><td class="col-prev">seréis</td></tr>
+            <tr><td class="pron">ellos</td><td>s<span class="irr">on</span></td><td><span class="irr">fue</span>ron</td><td><span class="irr">er</span>an</td><td class="col-prev">serían</td><td class="col-prev">serán</td></tr>
+          </tbody>
+        </table>
+        <div class="conj-legend">
+          <span class="k"><span class="dot-irr"></span> irregular forms in red</span>
+          <span class="k"><span class="dot-prev"></span> preview tenses (later)</span>
+        </div>
+      </div>
+      <div class="mnemonic ser">
+        <div class="mn-key">SER</div>
+        <div class="mn-exp">The identity that lasts —<br>origin · work · character</div>
+      </div>
+      <div>
+        <div class="section-heading">When to reach for ser</div>
+        <div class="use-list uses-ser">
+          <div class="use-row"><div class="use-cat">Origin</div><div class="use-eg"><span class="es">Soy de Canadá.</span> <em>— I'm from Canada.</em></div></div>
+          <div class="use-row"><div class="use-cat">Work</div><div class="use-eg"><span class="es">Soy ingeniero de sistemas.</span> <em>— I'm a systems engineer.</em></div></div>
+          <div class="use-row"><div class="use-cat">Identity</div><div class="use-eg"><span class="es">Soy bombero, pero no de México.</span> <em>— I'm a firefighter — not from Mexico.</em></div></div>
+          <div class="use-row"><div class="use-cat">Traits</div><div class="use-eg"><span class="es">Soy inteligente y carismático.</span> <em>— I'm smart and charismatic.</em></div></div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="nav-btn" onclick="goStep(1)">← Prev</button>
+        <span class="nav-counter">3 / 7</span>
+        <button class="nav-btn" onclick="goStep(3)">Next: Estar →</button>
+      </div>
+    </div>
+
+    <!-- Page 4 · Estar -->
+    <div class="step-panel" id="m1-step-3">
+      <div>
+        <div class="section-heading">Estar — present tense · start here</div>
+        <div class="conj-grid conj-estar">
+          <div class="conj-cell"><div class="conj-pron">yo</div><div class="conj-form">estoy</div></div>
+          <div class="conj-cell"><div class="conj-pron">tú</div><div class="conj-form">estás</div></div>
+          <div class="conj-cell"><div class="conj-pron">él · ella · usted</div><div class="conj-form">está</div></div>
+          <div class="conj-cell"><div class="conj-pron">nosotros</div><div class="conj-form">estamos</div></div>
+          <div class="conj-cell"><div class="conj-pron">vosotros</div><div class="conj-form">estáis</div></div>
+          <div class="conj-cell"><div class="conj-pron">ellos · ustedes</div><div class="conj-form">están</div></div>
+        </div>
+        <div class="conj-note">+ <strong>cansado · cansada · cansados · cansadas</strong> — the adjective agrees in gender &amp; number.</div>
+      </div>
+      <div>
+        <div class="section-heading">Estar — all tenses</div>
+        <table class="conj-table">
+          <thead>
+            <tr><th class="pron"></th><th>Present</th><th>Preterite</th><th>Imperfect</th><th class="col-prev">Cond.<small>preview</small></th><th class="col-prev">Future<small>preview</small></th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="pron">yo</td><td>esto<span class="irr">y</span></td><td>est<span class="irr">uve</span></td><td>estaba</td><td class="col-prev">estaría</td><td class="col-prev">estaré</td></tr>
+            <tr><td class="pron">tú</td><td>est<span class="irr">á</span>s</td><td>est<span class="irr">uvi</span>ste</td><td>estabas</td><td class="col-prev">estarías</td><td class="col-prev">estarás</td></tr>
+            <tr><td class="pron">él/ella</td><td>est<span class="irr">á</span></td><td>est<span class="irr">uvo</span></td><td>estaba</td><td class="col-prev">estaría</td><td class="col-prev">estará</td></tr>
+            <tr><td class="pron">nos.</td><td>estamos</td><td>est<span class="irr">uvi</span>mos</td><td>estábamos</td><td class="col-prev">estaríamos</td><td class="col-prev">estaremos</td></tr>
+            <tr><td class="pron">vos.</td><td>estáis</td><td>est<span class="irr">uvi</span>steis</td><td>estabais</td><td class="col-prev">estaríais</td><td class="col-prev">estaréis</td></tr>
+            <tr><td class="pron">ellos</td><td>est<span class="irr">á</span>n</td><td>est<span class="irr">uvie</span>ron</td><td>estaban</td><td class="col-prev">estarían</td><td class="col-prev">estarán</td></tr>
+          </tbody>
+        </table>
+        <div class="conj-legend">
+          <span class="k"><span class="dot-irr"></span> irregular forms in red</span>
+          <span class="k"><span class="dot-prev"></span> preview tenses (later)</span>
+        </div>
+        <div class="conj-note">Notice: estar is irregular in the <strong>present</strong> &amp; <strong>preterite</strong>, but perfectly regular in the imperfect — <em>estaba, estabas, estaba…</em></div>
+      </div>
+      <div class="mnemonic estar">
+        <div class="mn-key">ESTAR</div>
+        <div class="mn-exp">State of being (emotion)<br>+ Place of being (location)</div>
+      </div>
+      <div>
+        <div class="section-heading">When to reach for estar</div>
+        <div class="use-list uses-estar">
+          <div class="use-row"><div class="use-cat">Emotion</div><div class="use-eg"><span class="es">Estoy cansado hoy.</span> <em>— I'm tired today.</em></div></div>
+          <div class="use-row"><div class="use-cat">Place</div><div class="use-eg"><span class="es">Estoy en Canadá.</span> <em>— I'm in Canada.</em></div></div>
+          <div class="use-row"><div class="use-cat">Action</div><div class="use-eg"><span class="es">Mi perro está durmiendo.</span> <em>— My dog is sleeping.</em></div></div>
+          <div class="use-row"><div class="use-cat">Progress</div><div class="use-eg"><span class="es">Mi español está mejorando.</span> <em>— My Spanish is getting better.</em></div></div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="nav-btn" onclick="goStep(2)">← Prev</button>
+        <span class="nav-counter">4 / 7</span>
+        <button class="nav-btn" onclick="goStep(4)">Next: The contrast →</button>
+      </div>
+    </div>
+
+    <!-- Page 5 · Ser vs Estar -->
+    <div class="step-panel" id="m1-step-4">
+      <div class="hook-block">
+        <div class="hook-label">The twist</div>
+        <div class="hook-text">"Keep the word. Swap ser for estar — and you go from <em>who you are</em> to <em>how you are right now</em>."</div>
+      </div>
+      <div>
+        <div class="contrast-legend">
+          <span class="ser-l">Ser — who they are</span>
+          <span class="estar-l">Estar — how / where, now</span>
+        </div>
+        <div class="contrast-list">
+          <div class="contrast-row">
+            <div class="contrast-side ser"><div class="cs-phrase">soy de Canadá</div><div class="cs-mean">Where I'm <strong>from</strong>.</div></div>
+            <div class="contrast-adj">Canadá</div>
+            <div class="contrast-side estar"><div class="cs-phrase">estoy en Canadá</div><div class="cs-mean">Where I <strong>am now</strong>.</div></div>
+          </div>
+          <div class="contrast-row">
+            <div class="contrast-side ser"><div class="cs-phrase">es feliz</div><div class="cs-mean">A <strong>happy person</strong>.</div></div>
+            <div class="contrast-adj">feliz</div>
+            <div class="contrast-side estar"><div class="cs-phrase">está feliz</div><div class="cs-mean">Happy <strong>right now</strong>.</div></div>
+          </div>
+          <div class="contrast-row">
+            <div class="contrast-side ser"><div class="cs-phrase">es serio</div><div class="cs-mean">A <strong>serious person</strong>.</div></div>
+            <div class="contrast-adj">serio</div>
+            <div class="contrast-side estar"><div class="cs-phrase">está serio</div><div class="cs-mean">Being <strong>serious now</strong>.</div></div>
+          </div>
+          <div class="contrast-row">
+            <div class="contrast-side ser"><div class="cs-phrase">es rico</div><div class="cs-mean">He <strong>is rich</strong>.</div></div>
+            <div class="contrast-adj">rico</div>
+            <div class="contrast-side estar"><div class="cs-phrase">está rico</div><div class="cs-mean">It <strong>tastes delicious</strong>.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="nav-btn" onclick="goStep(3)">← Prev</button>
+        <span class="nav-counter">5 / 7</span>
+        <button class="nav-btn" onclick="goStep(5)">Next: Going to be →</button>
+      </div>
+    </div>
+
+    <!-- Page 6 · voy a + infinitive -->
+    <div class="step-panel" id="m1-step-5">
+      <div class="hook-block">
+        <div class="hook-label">The verb loop · ir</div>
+        <div class="hook-text">"One verb — <em>ir</em> — plus <em>a</em> plus any infinitive, and you can talk about the future. Including who you're <em>going to</em> ser or estar."</div>
+      </div>
+      <div>
+        <div class="section-heading">Ir — present tense</div>
+        <div class="conj-grid conj-ir">
+          <div class="conj-cell"><div class="conj-pron">yo</div><div class="conj-form"><span class="irr">voy</span></div></div>
+          <div class="conj-cell"><div class="conj-pron">tú</div><div class="conj-form"><span class="irr">vas</span></div></div>
+          <div class="conj-cell"><div class="conj-pron">él · ella · usted</div><div class="conj-form"><span class="irr">va</span></div></div>
+          <div class="conj-cell"><div class="conj-pron">nosotros</div><div class="conj-form"><span class="irr">vamos</span></div></div>
+          <div class="conj-cell"><div class="conj-pron">vosotros</div><div class="conj-form"><span class="irr">vais</span></div></div>
+          <div class="conj-cell"><div class="conj-pron">ellos · ustedes</div><div class="conj-form"><span class="irr">van</span></div></div>
+        </div>
+        <div class="conj-note"><span class="irr">Fully irregular</span> in the present — but the most-used verb in Spanish. Learn it first.</div>
+      </div>
+      <div>
+        <div class="section-heading">The near-future formula</div>
+        <div class="formula">
+          <span class="chip">voy / vas / va…</span>
+          <span class="op">+ a +</span>
+          <span class="chip inf">infinitivo</span>
+          <span class="eq">= going to</span>
+        </div>
+        <div class="al-note"><strong>a + el = al</strong> &nbsp;·&nbsp; voy <strong>al</strong> restaurante</div>
+      </div>
+      <div>
+        <div class="section-heading">…including going to ser / estar</div>
+        <div class="use-list uses-ir">
+          <div class="use-row"><div class="use-cat">→ ser</div><div class="use-eg"><span class="es">Voy a ser ingeniero.</span> <em>— I'm going to be an engineer.</em></div></div>
+          <div class="use-row"><div class="use-cat">→ estar</div><div class="use-eg"><span class="es">Mañana voy a estar en Canadá.</span> <em>— Tomorrow I'm going to be in Canada.</em></div></div>
+          <div class="use-row"><div class="use-cat">→ ir</div><div class="use-eg"><span class="es">Vas a ir a la biblioteca.</span> <em>— You're going to go to the library.</em></div></div>
+          <div class="use-row"><div class="use-cat">question</div><div class="use-eg"><span class="es">¿A dónde vas a ir a comer?</span> <em>— Where are you going to eat?</em></div></div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <button class="nav-btn" onclick="goStep(4)">← Prev</button>
+        <span class="nav-counter">6 / 7</span>
+        <button class="nav-btn" onclick="goStep(6)">Next: Practice →</button>
+      </div>
+    </div>
+
+    <!-- Page 7 · Practice -->
+    <div class="step-panel" id="m1-step-6">
+      <div>
+        <div class="section-heading">Ser, Estar or going to be?</div>
+        <div class="quiz-hint">Tap each line to reveal the answer</div>
+        <div class="quiz-list">
+          <div class="quiz-item" onclick="this.classList.toggle('revealed')"><div class="quiz-q">¿Quién <span class="blank">eres</span> tú?</div><div class="quiz-a">eres · identity</div></div>
+          <div class="quiz-item" onclick="this.classList.toggle('revealed')"><div class="quiz-q">Yo <span class="blank">soy</span> bombero de Canadá.</div><div class="quiz-a">soy · work + origin</div></div>
+          <div class="quiz-item" onclick="this.classList.toggle('revealed')"><div class="quiz-q">Hoy yo <span class="blank">estoy</span> cansado.</div><div class="quiz-a">estoy · emotion</div></div>
+          <div class="quiz-item" onclick="this.classList.toggle('revealed')"><div class="quiz-q">Mi perro <span class="blank">está</span> durmiendo.</div><div class="quiz-a">está · action</div></div>
+          <div class="quiz-item" onclick="this.classList.toggle('revealed')"><div class="quiz-q">Ayer yo <span class="blank">fui</span> jugador. <span style="opacity:.5">(preterite)</span></div><div class="quiz-a">fui · past</div></div>
+          <div class="quiz-item" onclick="this.classList.toggle('revealed')"><div class="quiz-q">Mañana yo <span class="blank">voy</span> a estar en Canadá.</div><div class="quiz-a">voy a estar · near future</div></div>
+        </div>
+      </div>
+      <div class="drill-block">
+        <div class="drill-label">Why?</div>
+        <div class="drill-text">Identity → <strong>ser</strong>. A state or place that could change → <strong>estar</strong>. A finished past → <strong>preterite (fui)</strong>. A plan → <strong>voy a +</strong> infinitive.</div>
+      </div>
+      <div class="culture-block">
+        <div class="more-practice">More drills · <a href="https://deleahora.com/actividades/gramatica/ser-o-estar-en-presente" target="_blank" rel="noopener">Ser o estar en presente</a></div>
+      </div>
+      <div class="step-nav">
+        <button class="nav-btn" onclick="goStep(5)">← Prev</button>
+        <span class="nav-counter">7 / 7</span>
+        <button class="nav-btn" style="background:var(--olive);color:var(--white);border-color:var(--olive)" onclick="showPopup('m1')">Complete ✓</button>
+      </div>
+    </div>

@@ -30,3 +30,23 @@ index.html                   — landing / entry point
 python3 -m http.server 8080
 # then open http://localhost:8080/Splash-draftv3-parrot.html
 ```
+
+# M1 "Who Are You?" — drop-in changes
+
+Overwrite these 5 files in your local `Spanish-Travel-Agent` repo, keeping the
+folder structure exactly as below. All paths are relative to the repo root.
+
+    data/modules.js                  ← isM1 flag + m1StepLabels export
+    js/app.js                        ← goStep() scoped to active module + M1 fetch/branch
+    styles/main.css                  ← --irr variable + "Module 1" CSS block (appended)
+    modules/m1-who-are-you.html      ← replaced: now the 7-step partial
+    Splash-draftv3-parrot.html       ← #m1-dots, #m1-step-label, #panel-m1 added
+
+## Order doesn't matter — they're consistent as a set.
+
+CRITICAL FILE: js/app.js. Its goStep() rewrite is what lets M0 and M1 coexist
+in the DOM without duplicate-ID navigation clashes. Don't cherry-pick the other
+four without this one.
+
+No new dependencies. No build step. Open Splash-draftv3-parrot.html and click
+the "M1 — Who Are You?" switcher button to see the 7 pages.

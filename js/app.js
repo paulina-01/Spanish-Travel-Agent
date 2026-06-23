@@ -1,16 +1,24 @@
 /* SOURCE: Splash-draftv3-parrot.html */
-import { modules, drillWords, stepLabels } from '../data/modules.js';
+import { modules, drillWords, stepLabels, m1StepLabels } from '../data/modules.js';
 
 let currentStep = 0;
+// Which multi-step module is on screen — drives goStep() so M0 and M1
+// (and any future multi-step module) share one navigator without ID clashes.
+let activeMulti = { prefix: 'm0', panel: null, labels: stepLabels };
 
 function goStep(n) {
-  document.getElementById('step-' + currentStep).classList.remove('active');
-  const dots = document.querySelectorAll('#m0-dots .step-dot');
-  if (dots[currentStep]) dots[currentStep].classList.remove('active');
+  const panel = activeMulti.panel || document.getElementById('panel-' + activeMulti.prefix);
+  if (!panel) return;
+  const cur = panel.querySelector('.step-panel.active');
+  if (cur) cur.classList.remove('active');
+  const dots = document.querySelectorAll('#' + activeMulti.prefix + '-dots .step-dot');
+  dots.forEach(d => d.classList.remove('active'));
   currentStep = n;
-  document.getElementById('step-' + n).classList.add('active');
+  const panels = panel.querySelectorAll('.step-panel');
+  if (panels[n]) panels[n].classList.add('active');
   if (dots[n]) dots[n].classList.add('active');
-  document.getElementById('m0-step-label').textContent = stepLabels[n];
+  const lbl = document.getElementById(activeMulti.prefix + '-step-label');
+  if (lbl) lbl.textContent = activeMulti.labels[n];
 }
 
 window.goStep = goStep;
@@ -20,6 +28,8 @@ const switcher = document.getElementById('switcher');
 function render(i) {
   const m = modules[i];
   const isM0 = !!m.isM0;
+  const isM1 = !!m.isM1;
+  const isMulti = isM0 || isM1;
   document.getElementById('bg-num').textContent    = m.n;
   document.getElementById('track').textContent     = m.track;
   document.getElementById('mod-num').textContent   = String(m.n).padStart(2,'0');
@@ -27,20 +37,28 @@ function render(i) {
   document.getElementById('level').textContent     = m.level;
   document.getElementById('students').textContent  = m.students;
 
-  document.getElementById('panel-standard').style.display = isM0 ? 'none' : 'flex';
+  document.getElementById('panel-standard').style.display = isMulti ? 'none' : 'flex';
   document.getElementById('panel-m0').style.display       = isM0 ? 'flex' : 'none';
+  document.getElementById('panel-m1').style.display       = isM1 ? 'flex' : 'none';
 
-  if (!isM0) {
+  if (!isMulti) {
     document.getElementById('std-content').style.display = '';
     document.getElementById('std-signup').style.display  = 'none';
   }
   document.getElementById('m0-dots').style.display        = isM0 ? 'flex' : 'none';
   document.getElementById('m0-step-label').style.display  = isM0 ? 'block' : 'none';
+  document.getElementById('m1-dots').style.display        = isM1 ? 'flex' : 'none';
+  document.getElementById('m1-step-label').style.display  = isM1 ? 'block' : 'none';
 
-  if (isM0) {
+  if (isMulti) {
+    activeMulti = isM0
+      ? { prefix: 'm0', panel: document.getElementById('panel-m0'), labels: stepLabels }
+      : { prefix: 'm1', panel: document.getElementById('panel-m1'), labels: m1StepLabels };
     goStep(0);
-    document.getElementById('drill-pills').innerHTML =
-      drillWords.map(w => `<span class="vocab-pill">${w}</span>`).join('');
+    if (isM0) {
+      document.getElementById('drill-pills').innerHTML =
+        drillWords.map(w => `<span class="vocab-pill">${w}</span>`).join('');
+    }
   } else {
     document.getElementById('hook').textContent     = '“' + m.hook + '”';
     document.getElementById('sent-es').textContent  = m.es;
@@ -72,9 +90,11 @@ function showSignup() {
 }
 
 window.showSignup = showSignup;
-window.render = render;
 
 const m0html = await fetch('modules/m0-sound-like-spanish.html').then(r => r.text());
 document.getElementById('panel-m0').innerHTML = m0html;
+
+const m1html = await fetch('modules/m1-who-are-you.html').then(r => r.text());
+document.getElementById('panel-m1').innerHTML = m1html;
 
 render(0);

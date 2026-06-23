@@ -11,6 +11,7 @@
     --charcoal:    #1C1C1A;
     --muted:       #7A7068;
     --white:       #FFFFFF;
+    --irr:         #CB3A2C;   /* irregular conjugation highlight (M1) */
     --font-display: 'Playfair Display', Georgia, serif;
     --font-body:    'DM Sans', sans-serif;
     --font-mono:    'DM Mono', monospace;
@@ -252,3 +253,110 @@
   #std-signup .formkit-submit:hover { opacity: .88 !important; }
   #std-signup .formkit-guarantee,
   #std-signup .formkit-powered-by-convertkit-container { display: none !important; }
+
+  /* ══════════════════════════════════════════════════════════════
+     Module 1 — Who Are You? (Ser vs Estar) component styles
+     Used by modules/m1-who-are-you.html (multi-step partial)
+     ══════════════════════════════════════════════════════════════ */
+
+  /* Present-tense conjugation cards */
+  .conj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+  .conj-cell { background: var(--white); border: 1px solid rgba(61,74,46,.12); border-radius: 4px; padding: .55rem .4rem; text-align: center; }
+  .conj-pron { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: .03em; color: var(--muted); margin-bottom: 4px; line-height: 1.2; }
+  .conj-form { font-family: var(--font-display); font-weight: 700; font-size: 19px; line-height: 1; }
+  .conj-ser   .conj-form { color: var(--terracotta); }
+  .conj-estar .conj-form { color: var(--olive); }
+  .conj-ir    .conj-form { color: var(--gold); }
+  .conj-note { font-family: var(--font-mono); font-size: 9px; letter-spacing: .03em; color: var(--muted); text-align: center; margin-top: 9px; line-height: 1.55; }
+  .conj-note strong { color: var(--charcoal); font-weight: 500; }
+  .irr { color: var(--irr); }
+
+  /* Full 5-tense matrix table */
+  .conj-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .conj-table th { font-family: var(--font-mono); font-size: 7.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); font-weight: 400; padding: 4px 3px; text-align: left; border-bottom: 1px solid rgba(61,74,46,.18); vertical-align: bottom; }
+  .conj-table th small { display: block; font-size: 6.5px; color: rgba(122,112,104,.7); letter-spacing: .02em; }
+  .conj-table td { font-family: var(--font-display); font-size: 12.5px; color: var(--charcoal); padding: 3.5px 3px; border-bottom: 1px solid rgba(61,74,46,.06); white-space: nowrap; }
+  .conj-table td.pron, .conj-table th.pron { font-family: var(--font-mono); font-size: 8px; color: var(--muted); width: 34px; }
+  .conj-table .col-prev { color: rgba(28,28,26,.42); }
+  .conj-table th.col-prev { color: rgba(122,112,104,.6); }
+  .conj-table tr:last-child td { border-bottom: none; }
+  .conj-legend { display: flex; gap: 8px 16px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 8px; letter-spacing: .03em; color: var(--muted); margin-top: 9px; }
+  .conj-legend .k { display: inline-flex; align-items: center; gap: 5px; }
+  .conj-legend .dot-irr { width: 7px; height: 7px; border-radius: 50%; background: var(--irr); display: inline-block; }
+  .conj-legend .dot-prev { width: 7px; height: 7px; border-radius: 2px; background: rgba(28,28,26,.25); display: inline-block; }
+
+  /* Tense-meaning list (conjugation-base page) */
+  .tense-list { display: flex; flex-direction: column; gap: 6px; }
+  .tense-row { background: var(--white); border: 1px solid rgba(61,74,46,.1); border-radius: 4px; padding: .55rem .8rem; }
+  .tense-row.prev { background: rgba(61,74,46,.035); border-style: dashed; }
+  .tense-head { display: flex; align-items: baseline; gap: 9px; margin-bottom: 2px; }
+  .tense-name { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--charcoal); }
+  .tense-tag { font-family: var(--font-mono); font-size: 7.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--terracotta); }
+  .tense-row.prev .tense-tag { color: var(--olive-mid); }
+  .tense-gloss { font-size: 10.5px; color: var(--muted); line-height: 1.4; }
+  .tense-eg { font-family: var(--font-display); font-style: italic; font-size: 11px; color: var(--charcoal); margin-top: 4px; }
+  .tense-eg span { color: var(--muted); font-style: normal; }
+
+  /* Mnemonic callout */
+  .mnemonic { display: flex; align-items: center; gap: 12px; border-radius: 4px; padding: .6rem .85rem; }
+  .mnemonic.ser   { background: rgba(196,97,74,.08); border: 1px solid rgba(196,97,74,.25); }
+  .mnemonic.estar { background: rgba(61,74,46,.06);  border: 1px solid rgba(61,74,46,.18); }
+  .mn-key { font-family: var(--font-display); font-weight: 900; font-size: 22px; letter-spacing: .04em; line-height: 1; flex-shrink: 0; }
+  .mnemonic.ser   .mn-key { color: var(--terracotta); }
+  .mnemonic.estar .mn-key { color: var(--olive); }
+  .mn-exp { font-family: var(--font-mono); font-size: 9px; letter-spacing: .04em; color: var(--muted); line-height: 1.5; }
+
+  /* Verb-use rows */
+  .use-list { display: flex; flex-direction: column; gap: 6px; }
+  .use-row { background: var(--white); border: 1px solid rgba(61,74,46,.1); border-radius: 4px; padding: .5rem .8rem; display: grid; grid-template-columns: 84px 1fr; gap: 10px; align-items: center; }
+  .use-cat { font-family: var(--font-mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+  .uses-ser   .use-cat { color: var(--terracotta); }
+  .uses-estar .use-cat { color: var(--olive-mid); }
+  .uses-ir    .use-cat { color: #9a7d1e; }
+  .use-eg { font-size: 11px; color: var(--charcoal); line-height: 1.35; }
+  .use-eg em { font-style: normal; color: var(--muted); }
+  .use-eg .es { font-family: var(--font-display); font-style: italic; font-weight: 700; }
+
+  /* Contrast — same word, two meanings */
+  .contrast-legend { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 0 2px 2px; }
+  .contrast-legend .ser-l   { color: var(--terracotta); }
+  .contrast-legend .estar-l { color: var(--olive-mid); }
+  .contrast-list { display: flex; flex-direction: column; gap: 7px; }
+  .contrast-row { display: grid; grid-template-columns: 1fr 86px 1fr; gap: 7px; align-items: stretch; }
+  .contrast-side { background: var(--white); border: 1px solid rgba(61,74,46,.1); border-radius: 4px; padding: .5rem .65rem; }
+  .contrast-side.ser   { border-left: 3px solid var(--terracotta); }
+  .contrast-side.estar { border-left: 3px solid var(--olive); }
+  .cs-phrase { font-family: var(--font-mono); font-size: 10px; margin-bottom: 3px; }
+  .contrast-side.ser   .cs-phrase { color: var(--terracotta); }
+  .contrast-side.estar .cs-phrase { color: var(--olive); }
+  .cs-mean { font-size: 10.5px; color: var(--charcoal); line-height: 1.3; }
+  .contrast-adj { display: flex; align-items: center; justify-content: center; text-align: center; font-family: var(--font-display); font-style: italic; font-weight: 700; font-size: 14px; color: var(--charcoal); }
+
+  /* voy a + infinitive formula */
+  .formula { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.32); border-radius: 4px; padding: .8rem .6rem; }
+  .formula .chip { font-family: var(--font-mono); font-size: 10px; background: var(--white); border: 1px solid rgba(61,74,46,.15); border-radius: 3px; padding: 5px 10px; color: var(--olive); }
+  .formula .chip.inf { color: var(--terracotta); border-color: rgba(196,97,74,.35); }
+  .formula .op { font-family: var(--font-display); font-weight: 700; color: var(--terracotta); font-size: 15px; white-space: nowrap; }
+  .formula .eq { font-family: var(--font-mono); font-size: 8px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .al-note { font-family: var(--font-mono); font-size: 9px; color: var(--muted); text-align: center; margin-top: 8px; }
+  .al-note strong { color: var(--terracotta); }
+
+  /* Practice quiz — tap to reveal */
+  .quiz-hint { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .quiz-list { display: flex; flex-direction: column; gap: 6px; }
+  .quiz-item { background: var(--white); border: 1px solid rgba(61,74,46,.1); border-radius: 4px; padding: .55rem .8rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; transition: border-color .15s, background .15s; }
+  .quiz-item:hover { border-color: rgba(196,97,74,.4); }
+  .quiz-q { font-size: 12px; color: var(--charcoal); line-height: 1.3; flex: 1; }
+  .quiz-q .blank { display: inline-block; min-width: 42px; text-align: center; color: transparent; border-bottom: 1.5px solid rgba(61,74,46,.3); margin: 0 3px; transition: color .15s, border-color .15s; }
+  .quiz-item.revealed .quiz-q .blank { color: var(--terracotta); font-weight: 700; font-family: var(--font-display); font-style: italic; border-color: var(--terra-light); }
+  .quiz-a { font-family: var(--font-mono); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; color: var(--olive-mid); white-space: nowrap; flex-shrink: 0; opacity: 0; transform: translateX(4px); transition: opacity .2s, transform .2s; }
+  .quiz-item.revealed .quiz-a { opacity: 1; transform: none; }
+  .more-practice { font-family: var(--font-mono); font-size: 9px; letter-spacing: .04em; color: var(--muted); }
+  .more-practice a { color: var(--terracotta); text-decoration: none; border-bottom: 1px solid rgba(196,97,74,.35); }
+  .more-practice a:hover { border-color: var(--terracotta); }
+
+  @media (max-width: 680px) {
+    .conj-table td, .conj-table th { font-size: 11px; }
+    .contrast-row { grid-template-columns: 1fr; }
+    .contrast-adj { justify-content: flex-start; padding: 2px 0; }
+  }
