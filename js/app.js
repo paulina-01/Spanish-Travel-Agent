@@ -56,8 +56,11 @@ function render(i) {
       : { prefix: 'm1', panel: document.getElementById('panel-m1'), labels: m1StepLabels };
     goStep(0);
     if (isM0) {
+      const speakerSvg = `<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>`;
       document.getElementById('drill-pills').innerHTML =
-        drillWords.map(w => `<span class="vocab-pill">${w}</span>`).join('');
+        drillWords.map(w =>
+          `<span class="vocab-pill vw-audio-pill"><button class="vw-speak-btn" aria-label="Play ${w}" onclick="vwSpeak('${w}', 0.85)">${speakerSvg}</button>${w}</span>`
+        ).join('');
     }
   } else {
     document.getElementById('hook').textContent     = '“' + m.hook + '”';
@@ -91,9 +94,11 @@ function showSignup() {
 
 window.showSignup = showSignup;
 window.render = render;
+window.vwDrillWords = drillWords;
 
 const m0html = await fetch('modules/m0-sound-like-spanish.html').then(r => r.text());
 document.getElementById('panel-m0').innerHTML = m0html;
+if (window.vwDrillInit) window.vwDrillInit();
 
 const m1html = await fetch('modules/m1-who-are-you.html').then(r => r.text());
 document.getElementById('panel-m1').innerHTML = m1html;

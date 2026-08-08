@@ -9,11 +9,36 @@
       <div>
         <div class="section-heading">The 5 vowels — pure, unchanging sounds</div>
         <div class="vowel-row">
-          <div class="vowel-card"><div class="vowel-letter">A</div><div class="vowel-sound">Ah</div><div class="vowel-eg">as in "father"</div></div>
-          <div class="vowel-card"><div class="vowel-letter">E</div><div class="vowel-sound">Eh</div><div class="vowel-eg">as in "bed"</div></div>
-          <div class="vowel-card"><div class="vowel-letter">I</div><div class="vowel-sound">Eeh</div><div class="vowel-eg">as in "see"</div></div>
-          <div class="vowel-card"><div class="vowel-letter">O</div><div class="vowel-sound">Oh</div><div class="vowel-eg">as in "go"</div></div>
-          <div class="vowel-card"><div class="vowel-letter">U</div><div class="vowel-sound">Ooh</div><div class="vowel-eg">as in "moon"</div></div>
+          <div class="vowel-card">
+            <button class="vw-speak-btn" aria-label="Play A" onclick="vwSpeakVowel('A', this.closest('.vowel-card'))"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            <div class="vowel-letter">A</div><div class="vowel-sound">Ah</div><div class="vowel-eg">as in "father"</div>
+            <button class="nav-btn vw-vowel-mic" onclick="vwListenVowel('a', this)">Try</button>
+            <span class="vw-feedback"></span>
+          </div>
+          <div class="vowel-card">
+            <button class="vw-speak-btn" aria-label="Play E" onclick="vwSpeakVowel('E', this.closest('.vowel-card'))"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            <div class="vowel-letter">E</div><div class="vowel-sound">Eh</div><div class="vowel-eg">as in "bed"</div>
+            <button class="nav-btn vw-vowel-mic" onclick="vwListenVowel('e', this)">Try</button>
+            <span class="vw-feedback"></span>
+          </div>
+          <div class="vowel-card">
+            <button class="vw-speak-btn" aria-label="Play I" onclick="vwSpeakVowel('I', this.closest('.vowel-card'))"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            <div class="vowel-letter">I</div><div class="vowel-sound">Eeh</div><div class="vowel-eg">as in "see"</div>
+            <button class="nav-btn vw-vowel-mic" onclick="vwListenVowel('i', this)">Try</button>
+            <span class="vw-feedback"></span>
+          </div>
+          <div class="vowel-card">
+            <button class="vw-speak-btn" aria-label="Play O" onclick="vwSpeakVowel('O', this.closest('.vowel-card'))"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            <div class="vowel-letter">O</div><div class="vowel-sound">Oh</div><div class="vowel-eg">as in "go"</div>
+            <button class="nav-btn vw-vowel-mic" onclick="vwListenVowel('o', this)">Try</button>
+            <span class="vw-feedback"></span>
+          </div>
+          <div class="vowel-card">
+            <button class="vw-speak-btn" aria-label="Play U" onclick="vwSpeakVowel('U', this.closest('.vowel-card'))"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            <div class="vowel-letter">U</div><div class="vowel-sound">Ooh</div><div class="vowel-eg">as in "moon"</div>
+            <button class="nav-btn vw-vowel-mic" onclick="vwListenVowel('u', this)">Try</button>
+            <span class="vw-feedback"></span>
+          </div>
         </div>
       </div>
       <div>
@@ -43,16 +68,28 @@
       <div>
         <div class="section-heading">Special consonants — CH · LL · Ñ</div>
         <div class="cons-list">
-          <div class="cons-row">
-            <div><div class="cons-letter">CH</div><div class="cons-sound">(che)</div></div>
+          <div class="cons-row" data-speech="{{che}} Sounds like the C H in English cheese. For example: {{chévere}}, meaning cool or awesome.">
+            <div class="cons-left">
+              <div class="cons-letter">CH</div>
+              <div class="cons-sound">(che)</div>
+              <button class="vw-speak-btn" aria-label="Play CH" onclick="vwSpeakConsonant(this.closest('.cons-row'))"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            </div>
             <div><div class="cons-rule">Sounds like the "ch" in English <em>cheese</em>.</div><div class="cons-eg">¡Chévere! — "Cool / Awesome"</div></div>
           </div>
-          <div class="cons-row">
-            <div><div class="cons-letter">LL</div><div class="cons-sound">(elle)</div></div>
+          <div class="cons-row" data-speech="{{lle}} Sounds like the Y in yes. Regional variation applies. For example: {{lluvia}}, meaning rain.">
+            <div class="cons-left">
+              <div class="cons-letter">LL</div>
+              <div class="cons-sound">(elle)</div>
+              <button class="vw-speak-btn" aria-label="Play LL" onclick="vwSpeakConsonant(this.closest('.cons-row'))"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            </div>
             <div><div class="cons-rule">Sounds like the "y" in <em>yes</em>. Regional variation applies.</div><div class="cons-eg">lluvia — "rain"</div></div>
           </div>
-          <div class="cons-row">
-            <div><div class="cons-letter">Ñ</div><div class="cons-sound">(eñe)</div></div>
+          <div class="cons-row" data-speech="{{eñe}} Sounds like N Y in canyon. A completely separate letter from N. For example: {{niño}}, meaning kid or boy.">
+            <div class="cons-left">
+              <div class="cons-letter">Ñ</div>
+              <div class="cons-sound">(eñe)</div>
+              <button class="vw-speak-btn" aria-label="Play Ñ" onclick="vwSpeakConsonant(this.closest('.cons-row'))"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            </div>
             <div><div class="cons-rule">Sounds like "ny" in <em>canyon</em>. A completely separate letter from N.</div><div class="cons-eg">niño — "kid / boy"</div></div>
           </div>
         </div>
@@ -60,19 +97,35 @@
       <div>
         <div class="section-heading">The tricky trio — H · J · G</div>
         <div class="cons-list">
-          <div class="cons-row">
-            <div><div class="cons-letter">H</div><div class="cons-sound">(silent)</div></div>
+          <div class="cons-row" data-speech="{{hache}} Always completely silent — never pronounced, though it does provide a pause. For example: {{hola}}, pronounced oh-lah, not hoh-lah.">
+            <div class="cons-left">
+              <div class="cons-letter">H</div>
+              <div class="cons-sound">(silent)</div>
+              <button class="vw-speak-btn" aria-label="Play H" onclick="vwSpeakConsonant(this.closest('.cons-row'))"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            </div>
             <div><div class="cons-rule">Always completely silent — never pronounced (does provide a pause)</div><div class="cons-eg">hola → "oh-lah", not "hoh-lah"</div></div>
           </div>
-          <div class="cons-row">
-            <div><div class="cons-letter">J</div><div class="cons-sound">(heh)</div></div>
+          <div class="cons-row" data-speech="{{j}} A strong rasping H sound — never like English J. For example: {{jugo}}, meaning juice, sounds like hoo-go.">
+            <div class="cons-left">
+              <div class="cons-letter">J</div>
+              <div class="cons-sound">(hoh-ta)</div>
+              <button class="vw-speak-btn" aria-label="Play J" onclick="vwSpeakConsonant(this.closest('.cons-row'))"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            </div>
             <div><div class="cons-rule">A strong rasping "h" — never like English J.</div><div class="cons-eg">jugo → "juice" (sounds like "hoo-go")</div></div>
           </div>
-          <div class="cons-row">
-            <div><div class="cons-letter">G</div><div class="cons-sound">(context)</div></div>
+          <div class="cons-row" data-speech="{{g}} Sounds like {{g}} before E or I, hard G {{gue}} before A, O, U, or closed vowel after Ü {{güi}}. For example: {{gato}}, hard G, and {{pingüino}}, also hard G.">
+            <div class="cons-left">
+              <div class="cons-letter">G</div>
+              <div class="cons-sound">(heh)</div>
+              <button class="vw-speak-btn" aria-label="Play G" onclick="vwSpeakConsonant(this.closest('.cons-row'))"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            </div>
             <div><div class="cons-rule">Like J before E/I. Hard G before A/O/U or closed vowel after Ü.</div><div class="cons-eg">gato → hard G &nbsp;|&nbsp; pingüino → hard G</div></div>
           </div>
         </div>
+      </div>
+      <div class="vw-mic-row">
+        <button class="nav-btn" onclick="vwListenConsonant(this)">Try it</button>
+        <span class="vw-feedback"></span>
       </div>
       <div class="step-nav">
         <button class="nav-btn" onclick="goStep(0)">← Prev</button>
@@ -91,7 +144,10 @@
         <div class="section-heading">The three word types by stress position</div>
         <div class="stress-list">
           <div class="stress-block">
-            <div class="stress-rule"><strong>Agudas</strong> — tonic syllable is the <em>last</em> syllable</div>
+            <div class="stress-rule-row">
+              <div class="stress-rule"><strong>Agudas</strong> — tonic syllable is the <em>last</em> syllable</div>
+              <button class="vw-speak-btn" aria-label="Play example" onclick="vwSpeakStress(0)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            </div>
             <div class="syllables">
               <span class="syl">ca</span><span class="syl-sep">·</span><span class="syl stressed">fé</span>
               <span style="display:inline-block;width:16px"></span>
@@ -101,17 +157,23 @@
             </div>
           </div>
           <div class="stress-block">
-            <div class="stress-rule"><strong>Llanas / Graves</strong> — tonic syllable is the <em>second-to-last</em> syllable</div>
+            <div class="stress-rule-row">
+              <div class="stress-rule"><strong>Llanas / Graves</strong> — tonic syllable is the <em>second-to-last</em> syllable</div>
+              <button class="vw-speak-btn" aria-label="Play example" onclick="vwSpeakStress(1)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            </div>
             <div class="syllables">
               <span class="syl stressed">me</span><span class="syl-sep">·</span><span class="syl">sa</span>
               <span style="display:inline-block;width:16px"></span>
               <span class="syl stressed">lá</span><span class="syl-sep">·</span><span class="syl">piz</span>
               <span style="display:inline-block;width:16px"></span>
-              <span class="syl stressed">ca</span><span class="syl-sep">·</span><span class="syl">nan</span>
+              <span class="syl stressed">can</span><span class="syl-sep">·</span><span class="syl">tan</span>
             </div>
           </div>
           <div class="stress-block">
-            <div class="stress-rule"><strong>Esdrújulas</strong> — tonic syllable is the <em>third-to-last</em> syllable</div>
+            <div class="stress-rule-row">
+              <div class="stress-rule"><strong>Esdrújulas</strong> — tonic syllable is the <em>third-to-last</em> syllable</div>
+              <button class="vw-speak-btn" aria-label="Play example" onclick="vwSpeakStress(2)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            </div>
             <div class="syllables">
               <span class="syl stressed">pá</span><span class="syl-sep">·</span><span class="syl">ja</span><span class="syl-sep">·</span><span class="syl">ro</span>
               <span style="display:inline-block;width:16px"></span>
@@ -150,9 +212,9 @@
           <div class="stress-block">
             <div class="stress-rule"><strong>Agudas</strong> get a tilde if they end in <em>vowel, N, or S</em></div>
             <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
-              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">café ✓</span>
-              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">canción ✓</span>
-              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">compás ✓</span>
+              <span class="vocab-pill vw-audio-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10"><button class="vw-speak-btn" aria-label="Play café" onclick="vwSpeak('café', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>café ✓</span>
+              <span class="vocab-pill vw-audio-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10"><button class="vw-speak-btn" aria-label="Play canción" onclick="vwSpeak('canción', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>canción ✓</span>
+              <span class="vocab-pill vw-audio-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10"><button class="vw-speak-btn" aria-label="Play compás" onclick="vwSpeak('compás', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>compás ✓</span>
               <span class="vocab-pill" style="opacity:.55">amor ✗</span>
               <span class="vocab-pill" style="opacity:.55">robot ✗</span>
               <span class="vocab-pill" style="opacity:.55">cantar ✗</span>
@@ -162,9 +224,9 @@
           <div class="stress-block">
             <div class="stress-rule"><strong>Llanas</strong> get a tilde if they end in a <em>consonant other than N or S</em></div>
             <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
-              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">lápiz ✓</span>
-              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">árbol ✓</span>
-              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">dólar ✓</span>
+              <span class="vocab-pill vw-audio-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10"><button class="vw-speak-btn" aria-label="Play lápiz" onclick="vwSpeak('lápiz', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>lápiz ✓</span>
+              <span class="vocab-pill vw-audio-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10"><button class="vw-speak-btn" aria-label="Play árbol" onclick="vwSpeak('árbol', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>árbol ✓</span>
+              <span class="vocab-pill vw-audio-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10"><button class="vw-speak-btn" aria-label="Play dólar" onclick="vwSpeak('dólar', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>dólar ✓</span>
               <span class="vocab-pill" style="opacity:.55">mesa ✗</span>
               <span class="vocab-pill" style="opacity:.55">cantan ✗</span>
               <span class="vocab-pill" style="opacity:.55">lunes ✗</span>
@@ -174,10 +236,10 @@
           <div class="stress-block">
             <div class="stress-rule"><strong>Esdrújulas</strong> — <em>always</em> get a tilde, no exceptions</div>
             <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
-              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">pájaro ✓</span>
-              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">música ✓</span>
-              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">mágico ✓</span>
-              <span class="vocab-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10">teléfono ✓</span>
+              <span class="vocab-pill vw-audio-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10"><button class="vw-speak-btn" aria-label="Play pájaro" onclick="vwSpeak('pájaro', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>pájaro ✓</span>
+              <span class="vocab-pill vw-audio-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10"><button class="vw-speak-btn" aria-label="Play música" onclick="vwSpeak('música', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>música ✓</span>
+              <span class="vocab-pill vw-audio-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10"><button class="vw-speak-btn" aria-label="Play mágico" onclick="vwSpeak('mágico', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>mágico ✓</span>
+              <span class="vocab-pill vw-audio-pill" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#7a5a10"><button class="vw-speak-btn" aria-label="Play teléfono" onclick="vwSpeak('teléfono', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>teléfono ✓</span>
             </div>
           </div>
         </div>
@@ -202,16 +264,64 @@
             <tr><th>Combination</th><th>Result</th><th>Spanish example</th><th>English feel</th></tr>
           </thead>
           <tbody>
-            <tr><td><span class="combo-pill combo-d">closed + closed</span></td><td>Diptongo — one syllable</td><td>ciudad · viuda</td><td>"city" · "widow"</td></tr>
-            <tr><td><span class="combo-pill combo-d">open + closed</span></td><td>Diptongo — one syllable</td><td>zanahoria · grúa</td><td>"root" · "fry"</td></tr>
-            <tr><td><span class="combo-pill combo-d">closed + open</span></td><td>Diptongo — one syllable</td><td>nieve · bueno</td><td>"trip" · "snow"</td></tr>
-            <tr><td><span class="combo-pill combo-h">open + open</span></td><td>Hiato — two syllables</td><td>teatro · jaula</td><td>"theatre" · "mail"</td></tr>
+            <tr><td><span class="combo-pill combo-d">closed + closed</span></td><td>Diptongo — one syllable</td><td><span class="dip-eg-cell"><button class="vw-speak-btn" aria-label="Play" onclick="vwSpeak('ciudad, viuda', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>ciudad · viuda</span></td><td>"city" · "widow"</td></tr>
+            <tr><td><span class="combo-pill combo-d">open + closed</span></td><td>Diptongo — one syllable</td><td><span class="dip-eg-cell"><button class="vw-speak-btn" aria-label="Play" onclick="vwSpeak('zanahoria, grúa', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>zanahoria · grúa</span></td><td>"root" · "fry"</td></tr>
+            <tr><td><span class="combo-pill combo-d">closed + open</span></td><td>Diptongo — one syllable</td><td><span class="dip-eg-cell"><button class="vw-speak-btn" aria-label="Play" onclick="vwSpeak('nieve, bueno', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>nieve · bueno</span></td><td>"trip" · "snow"</td></tr>
+            <tr><td><span class="combo-pill combo-h">open + open</span></td><td>Hiato — two syllables</td><td><span class="dip-eg-cell"><button class="vw-speak-btn" aria-label="Play" onclick="vwSpeak('teatro, jaula', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>teatro · jaula</span></td><td>"theatre" · "mail"</td></tr>
           </tbody>
         </table>
       </div>
       <div class="drill-block">
         <div class="drill-label">Quick drill</div>
-        <div class="drill-text">Diptongo or Hiato? &nbsp;<strong>toalla · sandía · ciudad · teatro · grúa</strong></div>
+        <div class="drill-text">Diptongo or Hiato?</div>
+        <div class="vw-dip-quiz">
+          <div class="vw-dip-card">
+            <button class="vw-speak-btn" aria-label="Play toalla" onclick="vwSpeak('toalla', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            <div class="vw-dip-word">toalla</div>
+            <div class="vw-dip-btns">
+              <button class="vw-dip-btn" data-ans="Diptongo" onclick="vwAnswerDip('toalla','Diptongo',this)">Diptongo</button>
+              <button class="vw-dip-btn" data-ans="Hiato"    onclick="vwAnswerDip('toalla','Hiato',this)">Hiato</button>
+            </div>
+            <span class="vw-dip-fb"></span>
+          </div>
+          <div class="vw-dip-card">
+            <button class="vw-speak-btn" aria-label="Play sandía" onclick="vwSpeak('sandía', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            <div class="vw-dip-word">sandía</div>
+            <div class="vw-dip-btns">
+              <button class="vw-dip-btn" data-ans="Diptongo" onclick="vwAnswerDip('sandía','Diptongo',this)">Diptongo</button>
+              <button class="vw-dip-btn" data-ans="Hiato"    onclick="vwAnswerDip('sandía','Hiato',this)">Hiato</button>
+            </div>
+            <span class="vw-dip-fb"></span>
+          </div>
+          <div class="vw-dip-card">
+            <button class="vw-speak-btn" aria-label="Play ciudad" onclick="vwSpeak('ciudad', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            <div class="vw-dip-word">ciudad</div>
+            <div class="vw-dip-btns">
+              <button class="vw-dip-btn" data-ans="Diptongo" onclick="vwAnswerDip('ciudad','Diptongo',this)">Diptongo</button>
+              <button class="vw-dip-btn" data-ans="Hiato"    onclick="vwAnswerDip('ciudad','Hiato',this)">Hiato</button>
+            </div>
+            <span class="vw-dip-fb"></span>
+          </div>
+          <div class="vw-dip-card">
+            <button class="vw-speak-btn" aria-label="Play teatro" onclick="vwSpeak('teatro', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            <div class="vw-dip-word">teatro</div>
+            <div class="vw-dip-btns">
+              <button class="vw-dip-btn" data-ans="Diptongo" onclick="vwAnswerDip('teatro','Diptongo',this)">Diptongo</button>
+              <button class="vw-dip-btn" data-ans="Hiato"    onclick="vwAnswerDip('teatro','Hiato',this)">Hiato</button>
+            </div>
+            <span class="vw-dip-fb"></span>
+          </div>
+          <div class="vw-dip-card">
+            <button class="vw-speak-btn" aria-label="Play grúa" onclick="vwSpeak('grúa', 0.85)"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 5v4h2l3 2.5V2.5L4 5z" fill="currentColor"/><path d="M9 4.5a3.5 3.5 0 010 5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></button>
+            <div class="vw-dip-word">grúa</div>
+            <div class="vw-dip-btns">
+              <button class="vw-dip-btn" data-ans="Diptongo" onclick="vwAnswerDip('grúa','Diptongo',this)">Diptongo</button>
+              <button class="vw-dip-btn" data-ans="Hiato"    onclick="vwAnswerDip('grúa','Hiato',this)">Hiato</button>
+            </div>
+            <span class="vw-dip-fb"></span>
+          </div>
+          <div id="vw-dip-score" class="vw-dip-summary"></div>
+        </div>
       </div>
       <div class="step-nav">
         <button class="nav-btn" onclick="goStep(3)">← Prev</button>
@@ -233,6 +343,17 @@
       <div class="drill-block">
         <div class="drill-label">Practice drill</div>
         <div class="drill-text">Read each word aloud and mark the stressed syllable. Then translate the capstone sentence and name every pronunciation rule you used.</div>
+      </div>
+      <div class="vw-drill-widget">
+        <div class="vw-drill-label">Voice drill</div>
+        <div class="vw-drill-word" id="vw-drill-word"></div>
+        <div class="vw-drill-row">
+          <button class="nav-btn" id="vw-drill-hear" onclick="vwDrillHear()">🔊 Hear</button>
+          <button class="nav-btn" id="vw-drill-mic" onclick="vwDrillListen(this)">Speak</button>
+          <button class="nav-btn" id="vw-drill-retry" class="vw-hidden" onclick="vwDrillRetry()">Retry</button>
+        </div>
+        <div class="vw-drill-feedback vw-fb--pass" id="vw-drill-fb"></div>
+        <div class="vw-drill-done vw-hidden" id="vw-drill-done">¡Perfecto! All words complete.</div>
       </div>
       <div class="culture-block">
         <div class="culture-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>

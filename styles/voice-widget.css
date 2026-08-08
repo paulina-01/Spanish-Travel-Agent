@@ -1,0 +1,244 @@
+/*
+ * Voice widget — audio playback and speech recognition interactions.
+ * Depends only on CSS variables already defined in styles/main.css.
+ * Loaded by Splash-draftv3-parrot.html alongside main.css.
+ */
+
+/* ── Utility ── */
+.vw-hidden { display: none !important; }
+
+/* ── Speaker button ── */
+.vw-speak-btn {
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  color: var(--muted);
+  line-height: 0;
+  flex-shrink: 0;
+  transition: color .15s;
+}
+.vw-speak-btn:hover { color: var(--olive); }
+.vw-speak-btn svg { width: 13px; height: 13px; display: block; }
+
+/* Playing state on cards */
+.vw-playing { border-color: var(--gold) !important; background: var(--gold-pale) !important; }
+
+/* ── Vowel card — speaker positioned top-right, "Try" button below content ── */
+.vowel-card { position: relative; display: flex; flex-direction: column; align-items: center; }
+.vowel-card .vw-speak-btn { position: absolute; top: 4px; right: 4px; }
+.vw-vowel-mic {
+  font-size: 8px !important;
+  padding: 2px 8px !important;
+  margin-top: 4px;
+  letter-spacing: .08em;
+}
+.vowel-card .vw-feedback { font-size: 8px; min-height: 1em; text-align: center; }
+
+/* ── Consonant row — speaker sits below sound label ── */
+.cons-left { display: flex; flex-direction: column; align-items: flex-start; }
+
+/* ── Stress rule row — rule label + speaker inline ── */
+.stress-rule-row { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+.stress-rule-row .stress-rule { margin-bottom: 0; flex: 1; }
+
+/* ── Tilde pills — flex so icon fits before text ── */
+.vocab-pill.vw-audio-pill { display: inline-flex; align-items: center; gap: 4px; }
+.vocab-pill.vw-audio-pill .vw-speak-btn { color: inherit; }
+
+/* ── Diphthong table — example cells ── */
+.dip-eg-cell { display: flex; align-items: center; gap: 5px; }
+
+/* ── Mic check row ── */
+.vw-mic-row { display: flex; align-items: center; gap: 10px; }
+
+/* ── Feedback text ── */
+.vw-feedback {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: .08em;
+  min-height: 1.2em;
+}
+.vw-fb--pass        { color: var(--olive); }
+.vw-fb--fail        { color: var(--terracotta); }
+.vw-fb--unsupported { color: var(--muted); font-style: italic; }
+.vw-fb--partial     { color: var(--gold); }
+
+/* ── Diphthong quiz ── */
+.vw-dip-quiz { display: flex; flex-direction: column; gap: 5px; margin-top: 6px; }
+
+.vw-dip-card {
+  background: var(--white);
+  border: 1px solid rgba(61,74,46,.12);
+  border-radius: 4px;
+  padding: .45rem .75rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.vw-dip-word {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--charcoal);
+  min-width: 72px;
+  flex-shrink: 0;
+}
+.vw-dip-btns { display: flex; gap: 6px; }
+.vw-dip-btn {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid rgba(61,74,46,.2);
+  color: var(--olive-mid);
+  padding: 4px 9px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background .12s, color .12s, border-color .12s;
+}
+.vw-dip-btn:hover:not(:disabled) { background: rgba(61,74,46,.06); }
+.vw-dip-btn:disabled { cursor: default; }
+.vw-dip-btn--pass { background: rgba(61,74,46,.1) !important; border-color: var(--olive) !important; color: var(--olive) !important; }
+.vw-dip-btn--fail { background: rgba(196,97,74,.08) !important; border-color: var(--terracotta) !important; color: var(--terracotta) !important; }
+
+.vw-dip-fb {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: .06em;
+  margin-left: auto;
+  flex-shrink: 0;
+  min-width: 80px;
+  text-align: right;
+}
+.vw-dip-summary {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-align: center;
+  padding: .35rem;
+  text-transform: uppercase;
+}
+
+/* ── Listening bar (mic pop-up) ── */
+.vw-listen-bar {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, 16px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 260px;
+  max-width: 92vw;
+  padding: 12px 14px;
+  background: var(--white);
+  border: 1px solid rgba(61,74,46,.18);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.vw-listen-bar.vw-listen--in { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+.vw-listen-bar[hidden] { display: none; }
+
+/* Equalizer icon */
+.vw-listen-eq { display: flex; align-items: flex-end; gap: 3px; height: 22px; width: 30px; flex-shrink: 0; }
+.vw-listen-eq span { flex: 1; height: 30%; border-radius: 2px; background: var(--muted); }
+.vw-listen--listening .vw-listen-eq span {
+  background: var(--terracotta);
+  animation: vw-eq .9s ease-in-out infinite;
+}
+.vw-listen-eq span:nth-child(2) { animation-delay: .15s; }
+.vw-listen-eq span:nth-child(3) { animation-delay: .30s; }
+.vw-listen-eq span:nth-child(4) { animation-delay: .45s; }
+.vw-listen-eq span:nth-child(5) { animation-delay: .60s; }
+@keyframes vw-eq { 0%, 100% { height: 25%; } 50% { height: 100%; } }
+.vw-listen--pass .vw-listen-eq span { background: var(--olive); height: 60%; }
+.vw-listen--fail .vw-listen-eq span { background: var(--terracotta); height: 40%; }
+.vw-listen--unsupported .vw-listen-eq span { background: var(--muted); height: 40%; }
+
+.vw-listen-body { flex: 1; min-width: 0; }
+.vw-listen-prompt {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--charcoal);
+}
+.vw-listen-status {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .06em;
+  margin-top: 3px;
+  color: var(--muted);
+}
+.vw-listen--pass .vw-listen-status { color: var(--olive); }
+.vw-listen--fail .vw-listen-status { color: var(--terracotta); }
+.vw-listen--unsupported .vw-listen-status { color: var(--muted); font-style: italic; }
+
+.vw-listen-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 2px 7px;
+  border-radius: 6px;
+  transition: background .12s, color .12s;
+}
+.vw-listen-close:hover { background: rgba(61,74,46,.08); color: var(--charcoal); }
+
+@media (prefers-reduced-motion: reduce) {
+  .vw-listen--listening .vw-listen-eq span { animation: none; height: 60%; }
+  .vw-listen-bar { transition: opacity .2s ease; }
+}
+
+/* ── Voice drill widget (Step 5) ── */
+.vw-drill-widget {
+  background: var(--white);
+  border: 1px solid rgba(61,74,46,.12);
+  border-radius: 4px;
+  padding: .85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .6rem;
+}
+.vw-drill-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  align-self: flex-start;
+}
+.vw-drill-word {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(22px, 3vw, 30px);
+  color: var(--olive);
+  letter-spacing: .02em;
+}
+.vw-drill-row { display: flex; align-items: center; gap: 8px; }
+.vw-drill-feedback {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: .08em;
+  min-height: 1.2em;
+  text-align: center;
+}
+.vw-drill-done {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--olive);
+  text-align: center;
+}
