@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Beyond the Plaza</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#3D4A2E">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Beyond the Plaza">
+
+<!--
+  App home screen — shown ONLY when launched as an installed PWA.
+  In a normal browser it immediately redirects to the marketing site, so
+  web visitors never see this page. Add ?preview to the URL to view it in a
+  browser for development (e.g. app.html?preview).
+-->
+<script>
+  (function () {
+    var params = new URLSearchParams(location.search);
+    if (params.has('preview')) return;                      // dev: always show home
+
+    // Reliable "installed launch" signal: the manifest start_url is
+    // app.html?source=pwa, so this param only appears on an app launch.
+    var launchedAsApp = params.get('source') === 'pwa';
+
+    // Secondary signal for in-app navigations back to app.html (no param).
+    var standalone =
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.matchMedia('(display-mode: minimal-ui)').matches ||
+      window.matchMedia('(display-mode: fullscreen)').matches ||
+      window.navigator.standalone === true;                 // iOS Safari
+
+    if (!launchedAsApp && !standalone) {
+      location.replace('index.html');                       // real browser visit → marketing site
+    }
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream:      #F5F0E8;
+    --terracotta: #C4614A;
+    --olive:      #3D4A2E;
+    --gold:       #C9A84C;
+    --white:      #FFFFFF;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body:    'DM Sans', sans-serif;
+    --font-mono:    'DM Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--olive);
+    color: var(--white);
+    font-family: var(--font-body);
+    display: flex;
+    flex-direction: column;
+    /* keep clear of iOS notch / home indicator */
+    padding: calc(2rem + env(safe-area-inset-top)) 1.5rem calc(2rem + env(safe-area-inset-bottom));
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Decorative brand circles */
+  body::before {
+    content: ''; position: absolute; bottom: -90px; right: -90px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: var(--terracotta); opacity: .16; pointer-events: none;
+  }
+  body::after {
+    content: ''; position: absolute; top: 40px; left: -50px;
+    width: 130px; height: 130px; border-radius: 50%;
+    border: 1.5px solid rgba(201,168,76,.28); pointer-events: none;
+  }
+
+  .home {
+    position: relative; z-index: 1;
+    flex: 1;
+    display: flex; flex-direction: column; justify-content: center;
+    max-width: 460px; width: 100%; margin: 0 auto;
+  }
+
+  .track-pill {
+    align-self: flex-start;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(201,168,76,.14); border: 1px solid rgba(201,168,76,.38);
+    color: var(--gold); font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: .12em; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 20px; margin-bottom: 2rem;
+  }
+  .track-pill::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+
+  .home-title {
+    font-family: var(--font-display); font-style: italic; font-weight: 900;
+    font-size: clamp(40px, 12vw, 60px); line-height: 1.02;
+    margin-bottom: 1rem;
+  }
+  .home-tagline {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: rgba(255,255,255,.5); margin-bottom: 2.5rem;
+  }
+
+  .enter-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: .1em; text-transform: uppercase;
+    background: var(--terracotta); color: var(--white);
+    border: none; border-radius: 3px; padding: 16px 26px;
+    cursor: pointer; text-decoration: none; width: 100%;
+    transition: opacity .15s, transform .1s;
+  }
+  .enter-btn:hover { opacity: .9; }
+  .enter-btn:active { transform: translateY(1px); }
+
+  .module-jump {
+    margin-top: 1.5rem;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .module-jump-label {
+    font-family: var(--font-mono); font-size: 8px;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: rgba(255,255,255,.35); margin-bottom: 2px;
+  }
+  .mod-chip {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 4px; padding: 12px 14px;
+    color: var(--white); text-decoration: none;
+    transition: background .15s;
+  }
+  .mod-chip:hover { background: rgba(255,255,255,.1); }
+  .mod-chip-num {
+    font-family: var(--font-display); font-weight: 900; font-size: 20px;
+    color: rgba(255,255,255,.35); line-height: 1; min-width: 28px; flex-shrink: 0;
+  }
+  .mod-chip-title { font-family: var(--font-display); font-style: italic; font-weight: 700; font-size: 15px; line-height: 1.2; flex: 1; min-width: 0; }
+  .mod-chip-level {
+    flex-shrink: 0; font-family: var(--font-mono); font-size: 8px;
+    letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4);
+  }
+
+  /* "···" expander that reveals the rest of the modules */
+  .mod-more-toggle {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 4px; padding: 11px 14px;
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+    color: rgba(255,255,255,.55); transition: background .15s;
+  }
+  .mod-more-toggle::-webkit-details-marker { display: none; }
+  .mod-more-toggle:hover { background: rgba(255,255,255,.1); }
+  .mod-more-toggle .dots { font-size: 15px; letter-spacing: .18em; line-height: 0; }
+  .mod-more[open] .mod-more-toggle { margin-bottom: 8px; }
+  .mod-more .label-less { display: none; }
+  .mod-more[open] .label-more { display: none; }
+  .mod-more[open] .label-less { display: inline; }
+  .mod-more-list {
+    display: flex; flex-direction: column; gap: 8px;
+    max-height: 34vh; overflow-y: auto; padding-right: 2px;
+  }
+
+  .home-foot {
+    position: relative; z-index: 1;
+    text-align: center;
+    font-family: var(--font-mono); font-size: 8px;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(255,255,255,.28);
+    padding-top: 1.5rem;
+  }
+</style>
+</head>
+<body>
+
+  <div class="home">
+    <span class="track-pill">Spanish · A1 → C1</span>
+    <h1 class="home-title">Beyond<br>the Plaza</h1>
+    <div class="home-tagline">Spanish for the modern traveller</div>
+
+    <a class="enter-btn" href="Splash-draftv3-parrot.html">Enter the course →</a>
+
+    <div class="module-jump">
+      <div class="module-jump-label">Jump straight in</div>
+      <a class="mod-chip" href="Splash-draftv3-parrot.html">
+        <span class="mod-chip-num">00</span>
+        <span class="mod-chip-title">Vocal Roots: Sound like Spanish</span>
+        <span class="mod-chip-level">A1</span>
+      </a>
+      <a class="mod-chip" href="Splash-draftv3-parrot.html">
+        <span class="mod-chip-num">01</span>
+        <span class="mod-chip-title">Who Are You?</span>
+        <span class="mod-chip-level">A1</span>
+      </a>
+
+      <details class="mod-more">
+        <summary class="mod-more-toggle">
+          <span class="dots">···</span>
+          <span class="label-more">All modules</span>
+          <span class="label-less">Show less</span>
+        </summary>
+        <div class="mod-more-list">
+          <a class="mod-chip" href="Splash-draftv3-parrot.html">
+            <span class="mod-chip-num">02</span>
+            <span class="mod-chip-title">Going Places</span>
+            <span class="mod-chip-level">A1–A2</span>
+          </a>
+          <a class="mod-chip" href="Splash-draftv3-parrot.html">
+            <span class="mod-chip-num">04</span>
+            <span class="mod-chip-title">A Day in the Life</span>
+            <span class="mod-chip-level">A2</span>
+          </a>
+          <a class="mod-chip" href="Splash-draftv3-parrot.html">
+            <span class="mod-chip-num">08</span>
+            <span class="mod-chip-title">Para vs Por</span>
+            <span class="mod-chip-level">B1–B2</span>
+          </a>
+          <a class="mod-chip" href="Splash-draftv3-parrot.html">
+            <span class="mod-chip-num">12</span>
+            <span class="mod-chip-title">The Subjunctive</span>
+            <span class="mod-chip-level">B2</span>
+          </a>
+          <a class="mod-chip" href="Splash-draftv3-parrot.html">
+            <span class="mod-chip-num">16</span>
+            <span class="mod-chip-title">Poetry, Song &amp; Culture</span>
+            <span class="mod-chip-level">C1</span>
+          </a>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <div class="home-foot">Beyond the Plaza · Course app</div>
+
+  <script src="js/register-sw.js" defer></script>
+</body>
+</html>

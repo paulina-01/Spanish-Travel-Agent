@@ -242,3 +242,16 @@
   color: var(--olive);
   text-align: center;
 }
+
+/* ── Touch devices: enlarge the small icon tap targets ── */
+@media (pointer: coarse) {
+  .vw-speak-btn { padding: 7px; }
+  .vw-listen-close { padding: 6px 11px; }
+}
+
+/* ── Phone-vertical: let the Quick Drill cards breathe ── */
+@media (orientation: portrait) and (max-width: 900px) {
+  .vw-dip-card { flex-wrap: wrap; }        /* Diptongo/Hiato buttons drop to a 2nd line if needed */
+  .vw-dip-word { min-width: 0; }
+  .vw-dip-fb   { min-width: 0; }
+}

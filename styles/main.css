@@ -24,6 +24,7 @@
     font-family: var(--font-body);
     color: var(--charcoal);
     min-height: 100vh;
+    min-height: 100dvh;   /* dynamic viewport height — avoids mobile URL-bar clipping */
     padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
@@ -359,4 +360,39 @@
     .conj-table td, .conj-table th { font-size: 11px; }
     .contrast-row { grid-template-columns: 1fr; }
     .contrast-adj { justify-content: flex-start; padding: 2px 0; }
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     Phone-vertical (portrait) layout.
+     Landscape + desktop keep the default 300px + content two-column
+     grid. The `max-width: 900px` guard keeps a tall desktop window
+     from falsely triggering the stacked phone layout.
+     ══════════════════════════════════════════════════════════════ */
+  @media (orientation: portrait) and (max-width: 900px) {
+    body { padding: 1rem; gap: 1rem; }
+
+    /* Stack: olive panel becomes a top header, content flows beneath */
+    .slide { grid-template-columns: 1fr; }
+
+    /* Compact the header so content isn't pushed far down the page */
+    .panel-left   { padding: 1.25rem 1.35rem; }
+    .module-number { font-size: 52px; margin-bottom: .15rem; }
+    .track-pill,
+    .module-label,
+    .module-title { margin-bottom: .9rem; }
+    .step-dots    { margin-top: 1rem; }
+    .students-tag { margin-top: 1rem; padding-top: 1rem; }
+
+    /* Content sizes to itself instead of the fixed desktop min-height */
+    .panel-right  { min-height: auto; padding: 1.5rem 1.35rem; }
+
+    /* Tame the giant watermark digit on narrow screens */
+    .bg-number    { font-size: clamp(120px, 46vw, 220px); }
+
+    /* Wide tables scroll horizontally rather than overflow the slide */
+    .dip-table,
+    .conj-table   { display: block; overflow-x: auto; }
+
+    /* Hide the design-tweaks dev panel on phones */
+    #tweaks-root  { display: none; }
   }

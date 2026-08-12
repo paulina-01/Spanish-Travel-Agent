@@ -1,0 +1,20 @@
+{
+  "name": "Beyond the Plaza — Spanish for the Modern Traveller",
+  "short_name": "Beyond the Plaza",
+  "description": "A curated Spanish course for the modern traveller — pronunciation, grammar, and culture.",
+  "start_url": "app.html?source=pwa",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#3D4A2E",
+  "theme_color": "#3D4A2E",
+  "categories": ["education"],
+  "lang": "en",
+  "icons": [
+    { "src": "assets/favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
