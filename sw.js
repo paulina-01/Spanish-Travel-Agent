@@ -6,7 +6,7 @@
  * cross-origin requests (Google Fonts, React/Babel, ConvertKit CDNs)
  * pass straight through to the network.
  * ───────────────────────────────────────────────────────────── */
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 const CACHE_NAME = 'btp-shell-' + CACHE_VERSION;
 
 /* Same-origin files that make up the installable app shell. */
@@ -85,7 +85,25 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Same-origin assets: cache-first, fall back to network (and cache what we fetch).
+  // Code/shell files (JS, CSS, HTML, JSON): network-first so edits ship as
+  // soon as they're saved; fall back to cache only when offline. This avoids
+  // the "stale cached script" trap during development.
+  if (/\.(?:js|mjs|jsx|css|html|json|webmanifest)$/i.test(url.pathname)) {
+    event.respondWith((async () => {
+      try {
+        const res = await fetch(req);
+        const cache = await caches.open(CACHE_NAME);
+        cache.put(req, res.clone());
+        return res;
+      } catch (err) {
+        return (await caches.match(req)) || Response.error();
+      }
+    })());
+    return;
+  }
+
+  // Other same-origin assets (icons, images, fonts): cache-first — these rarely
+  // change, so speed wins.
   event.respondWith((async () => {
     const cached = await caches.match(req);
     if (cached) return cached;

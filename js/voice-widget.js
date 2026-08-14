@@ -97,8 +97,8 @@
     A: 'Ah. As in father.',
     E: 'Eh. As in bed.',
     I: 'Eeh. As in see.',
-    O: 'Oh. As in go.',
-    U: 'Ooh. As in moon.'
+    O: 'o. As in go.',
+    U: 'ooooh. As in moon.'
   };
   window.vwSpeakVowel = function (letter, cardEl) {
     speak(VOWEL[letter], 'en-US', 0.9, cardEl);
@@ -250,12 +250,19 @@
       return;
     }
 
-    setListenState('listening', 'Listening…');
+    // Calm "getting ready" state first — the recogniser needs a moment to
+    // open the mic. We only switch to the live, animated "Listening…" state
+    // once it actually starts capturing audio, so the user doesn't start
+    // speaking into a mic that isn't recording yet.
+    setListenState('getready', 'Getting ready…');
     var rec = new SpeechRec();
     activeRec = rec;
     rec.lang = lang;
     rec.interimResults = false;
     rec.maxAlternatives = 1;
+    var goLive = function () { if (activeRec === rec) setListenState('listening', 'Listening…'); };
+    rec.onaudiostart = goLive;   // mic is actually capturing now
+    rec.onstart = goLive;        // fallback for browsers that skip onaudiostart
     rec.onresult = function (e) {
       activeRec = null;
       if (activeBtn) { activeBtn.disabled = false; activeBtn = null; }
@@ -293,8 +300,16 @@
         if (fbEl) { fbEl.className = 'vw-feedback vw-fb--' + (err === 'unsupported' ? 'unsupported' : 'fail'); fbEl.textContent = err === 'unsupported' ? 'Not supported.' : 'Try again.'; }
         return;
       }
-      var stripped = t.normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
-      var pass = stripped.charAt(0) === target;
+      // A lone vowel is hard for the recogniser: "ah" often comes back as
+      // "ha" / "aha" / "ajá" (the H is silent in Spanish so it gets tacked on),
+      // "oh" as "ho", "you" for U, etc. So for EVERY vowel: drop accents, keep
+      // only letters, strip a leading (silent) H, then accept if the first
+      // vowel matches — or, for a short utterance, if the target vowel appears
+      // anywhere in it.
+      var core = t.normalize('NFD').replace(/[̀-ͯ]/g, '')
+                  .toLowerCase().replace(/[^a-z]/g, '').replace(/^h+/, '');
+      var firstVowel = (core.match(/[aeiou]/) || [''])[0];
+      var pass = firstVowel === target || (core.length <= 4 && core.indexOf(target) !== -1);
       setListenState(pass ? 'pass' : 'fail', pass ? '✓ ¡Bien!' : 'Heard: ' + t);
       if (fbEl) {
         clearTimeout(fbEl._t);
