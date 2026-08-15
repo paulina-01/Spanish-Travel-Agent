@@ -93,15 +93,29 @@
   }
 
   /* ── Step 0: Vowel playback ── */
-  var VOWEL = {
-    A: 'Ah. As in father.',
-    E: 'Eh. As in bed.',
-    I: 'Eeh. As in see.',
-    O: 'o. As in go.',
-    U: 'ooooh. As in moon.'
-  };
+  /* Each vowel is played as the pure Spanish vowel (es-ES gives the exact
+     sound: a=ah, e=eh, i=ee, o=oh, u=oo — English spellings like "ooh" get
+     mis-read as "oh"), then the English "as in ___" anchor word. */
+  var VOWEL_EG = { A: 'father', E: 'bed', I: 'see', O: 'go', U: 'moon' };
   window.vwSpeakVowel = function (letter, cardEl) {
-    speak(VOWEL[letter], 'en-US', 0.9, cardEl);
+    if (!hasSynth) return;
+    speechSynthesis.cancel();
+    if (cardEl) cardEl.classList.add('vw-playing');
+    var seq = [
+      { text: letter.toLowerCase(),              lang: 'es-ES', rate: 0.8 },
+      { text: 'As in ' + VOWEL_EG[letter] + '.', lang: 'en-US', rate: 0.9 }
+    ];
+    (function playNext(i) {
+      if (i >= seq.length) { if (cardEl) cardEl.classList.remove('vw-playing'); return; }
+      var u = new SpeechSynthesisUtterance(seq[i].text);
+      u.lang = seq[i].lang;
+      u.rate = seq[i].rate;
+      var voice = pickVoice(seq[i].lang);
+      if (voice) u.voice = voice;
+      u.onend  = function () { playNext(i + 1); };
+      u.onerror = function () { if (cardEl) cardEl.classList.remove('vw-playing'); };
+      speechSynthesis.speak(u);
+    })(0);
   };
 
   /* ── Step 1: Consonant playback ── */
