@@ -1,0 +1,12 @@
+# Authoring files remain on your computer/private repository. Premium lessons
+# are uploaded to the private Supabase Storage bucket described in README.md.
+private-course-source/
+modules/m2-going-places.html
+modules/m4-day-in-life.html
+modules/m8-para-vs-por.html
+modules/m12-subjunctive.html
+modules/m16-poetry-song-culture.html
+
+# Never publish local configuration or secrets.
+.env
+.env.*

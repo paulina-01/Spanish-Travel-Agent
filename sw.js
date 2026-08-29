@@ -6,7 +6,7 @@
  * cross-origin requests (Google Fonts, React/Babel, ConvertKit CDNs)
  * pass straight through to the network.
  * ───────────────────────────────────────────────────────────── */
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 const CACHE_NAME = 'btp-shell-' + CACHE_VERSION;
 
 /* Same-origin files that make up the installable app shell. */
@@ -19,7 +19,10 @@ const PRECACHE = [
   'styles/main.css',
   'styles/popups.css',
   'styles/voice-widget.css',
+  'styles/course-access.css',
   'js/app.js',
+  'js/course-config.js',
+  'js/course-access.js',
   'js/voice-widget.js',
   'js/popups.js',
   'js/register-sw.js',

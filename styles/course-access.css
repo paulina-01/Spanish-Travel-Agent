@@ -1,0 +1,14 @@
+.course-access { position: fixed; inset: 0; z-index: 1200; display: grid; place-items: center; padding: 1.5rem; }
+.course-access__scrim { position: absolute; inset: 0; background: rgba(28,28,26,.58); backdrop-filter: blur(3px); }
+.course-access__card { position: relative; width: min(100%, 420px); padding: 2rem; border-radius: 6px; background: var(--white, #fff); box-shadow: 0 24px 56px rgba(28,28,26,.32); }
+.course-access__eyebrow { color: var(--terracotta); font: 500 10px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+.course-access h2 { margin: .55rem 0 .75rem; color: var(--olive); font: italic 700 28px/1.1 var(--font-display); }
+.course-access p { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.course-access form { display: grid; gap: .65rem; margin-top: 1rem; }
+.course-access label { font: 500 10px var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--olive); }
+.course-access input { width: 100%; padding: 12px; border: 1px solid rgba(61,74,46,.25); border-radius: 3px; font: 14px var(--font-body); }
+.course-access__primary { width: 100%; margin-top: 1rem; padding: 13px; border: 0; border-radius: 3px; background: var(--olive); color: var(--white); cursor: pointer; font: 500 10px var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
+.course-access form .course-access__primary { margin-top: .25rem; }
+.course-access__close { position: absolute; top: .7rem; right: .8rem; padding: .2rem; border: 0; background: transparent; color: var(--muted); cursor: pointer; font-size: 23px; }
+.course-access__message { min-height: 1.25em; margin-top: .8rem; color: var(--terracotta) !important; font-size: 12px !important; }
+.sw-btn.is-locked::after { content: ' · locked'; opacity: .58; font-size: .78em; }

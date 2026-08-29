@@ -2,6 +2,7 @@
 import { modules, drillWords, stepLabels, m1StepLabels } from '../data/modules.js';
 
 let currentStep = 0;
+const standardContentTemplate = document.getElementById('std-content').innerHTML;
 // Which multi-step module is on screen — drives goStep() so M0 and M1
 // (and any future multi-step module) share one navigator without ID clashes.
 let activeMulti = { prefix: 'm0', panel: null, labels: stepLabels };
@@ -42,6 +43,7 @@ function render(i) {
   document.getElementById('panel-m1').style.display       = isM1 ? 'flex' : 'none';
 
   if (!isMulti) {
+    document.getElementById('std-content').innerHTML = standardContentTemplate;
     document.getElementById('std-content').style.display = '';
     document.getElementById('std-signup').style.display  = 'none';
   }
@@ -62,6 +64,8 @@ function render(i) {
           `<span class="vocab-pill vw-audio-pill"><button class="vw-speak-btn" aria-label="Play ${w}" onclick="vwSpeak('${w}', 0.85)">${speakerSvg}</button>${w}</span>`
         ).join('');
     }
+  } else if (m.access === 'paid') {
+    document.getElementById('std-content').innerHTML = '<div class="hook-block"><div class="hook-label">Course member</div><div class="hook-text">Loading your lesson…</div></div>';
   } else {
     document.getElementById('hook').textContent     = '“' + m.hook + '”';
     document.getElementById('sent-es').textContent  = m.es;
@@ -79,11 +83,29 @@ function render(i) {
   pl.style.animation = 'none'; pl.offsetHeight; pl.style.animation = '';
 }
 
+async function openModule(i) {
+  const m = modules[i];
+  if (m.access !== 'paid') return render(i);
+  const access = await window.courseAccess.refreshEntitlement();
+  if (!access.paid) return window.courseAccess.showPaywall();
+  render(i);
+  try {
+    const protectedHtml = await window.courseAccess.fetchLesson(m.slug);
+    const template = document.createElement('template');
+    template.innerHTML = protectedHtml;
+    const protectedView = template.content.querySelector('.std-view');
+    document.getElementById('std-content').innerHTML = protectedView ? protectedView.innerHTML : protectedHtml;
+  } catch (error) {
+    document.getElementById('std-content').innerHTML = `<div class="hook-block"><div class="hook-label">Coming soon</div><div class="hook-text">${error.message}</div></div>`;
+  }
+}
+
 modules.forEach((m,i) => {
   const b = document.createElement('button');
   b.className = 'sw-btn' + (i===0 ? ' active' : '');
   b.textContent = 'M' + m.n + ' — ' + m.title;
-  b.onclick = () => render(i);
+  if (m.access === 'paid') b.classList.add('is-locked');
+  b.onclick = () => openModule(i);
   switcher.appendChild(b);
 });
 
@@ -94,6 +116,7 @@ function showSignup() {
 
 window.showSignup = showSignup;
 window.render = render;
+window.openModule = openModule;
 window.vwDrillWords = drillWords;
 
 const m0html = await fetch('modules/m0-sound-like-spanish.html').then(r => r.text());

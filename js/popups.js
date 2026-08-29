@@ -14,7 +14,7 @@
 
 const POPUP_ROUTES = {
   m0: { reviewFn: () => hidePopup(), nextFn: () => { hidePopup(); window.render(1); } },
-  m1: { reviewFn: () => hidePopup(), nextFn: () => { hidePopup(); window.render(2); } },
+  m1: { reviewFn: () => hidePopup(), nextFn: () => { hidePopup(); window.openModule(2); } },
 };
 
 window.POPUP_ROUTES = POPUP_ROUTES;
